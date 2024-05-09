@@ -1,0 +1,27 @@
+{
+    "鹅掌坦大街": [{ "name": "鹅掌坦", "all": true }],
+    "鹅掌坦东街": [{ "name": "鹅掌坦", "all": true }],
+    "鹅掌坦西街": [{ "name": "鹅掌坦", "all": true }],
+    "汇华街": [{ "name": "恒丰", "all": true }],
+    "恒丰横四街": [{ "name": "恒丰", "all": true }],
+    "恒丰街": [{ "name": "恒丰", "all": true }],
+    "置德南街": [{ "name": "恒丰", "all": true }],
+    "横滘路": [{ "name": "横滘", "all": true }],
+    "横滘东华巷": [{ "name": "横滘", "all": true }],
+    "横滘东街": [{ "name": "横滘", "all": true }],
+    "横滘南胜二街": [{ "name": "横滘", "all": true }],
+    "横滘大街": [{ "name": "横滘", "all": true }],
+    "横滘货场": [{ "name": "横滘", "all": true }],
+    "同雅北街": [{ "name": "同雅", "all": true }],
+    "山坊南街": [{ "name": "怡德", "all": true }],
+    "得雅街": [{ "name": "怡德", "all": true }],
+    "明德一街": [{ "name": "金德", "all": true }],
+    "上步路": [
+        { "name": "怡德", "all": false, "start": 1, "end": 39, "oddity": 1 },
+        { "name": "同景", "all": false, "start": 2, "end": 32, "oddity": 0 }
+    ],
+    "西槎路": [
+        { "name": "鹅掌坦", "all": false, "start": 13, "end": 129, "oddity": 1 },
+        { "name": "恒丰", "all": false, "start": 521, "end": 831, "oddity": 1 }
+    ]
+}
