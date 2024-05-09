@@ -38,7 +38,7 @@ if __name__ == "__main__":
     neighborhood_column = []
 
     table = Table()
-    table.add_column("住址", style="green", no_wrap=True)
+    table.add_column("地址", style="green", no_wrap=True)
     table.add_column(neighborhood_col_name, style="blue")
 
     filename, address_column = sys.argv[1], sys.argv[2]
