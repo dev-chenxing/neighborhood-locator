@@ -16,12 +16,21 @@
     "山坊南街": [{ "name": "怡德", "all": true }],
     "得雅街": [{ "name": "怡德", "all": true }],
     "明德一街": [{ "name": "金德", "all": true }],
+    "上步新街": [{ "name": "上步", "all": true }],
+    "同康路": [{ "name": "同康", "all": true }],
+    "粤溪北路": [{ "name": "粤溪", "all": true }],
+    "荔德路": [{ "name": "荔德", "all": true }],
     "上步路": [
         { "name": "怡德", "all": false, "start": 1, "end": 39, "oddity": 1 },
         { "name": "同景", "all": false, "start": 2, "end": 32, "oddity": 0 }
     ],
     "西槎路": [
+        { "name": "田心", "all": false, "start": 1, "end": 1, "oddity": 1 },
+        { "name": "田心", "all": false, "start": 8, "end": 96, "oddity": 0 },
         { "name": "鹅掌坦", "all": false, "start": 13, "end": 129, "oddity": 1 },
-        { "name": "恒丰", "all": false, "start": 521, "end": 831, "oddity": 1 }
+        { "name": "岭南", "all": false, "start": 377, "end": 465, "oddity": 1 },
+        { "name": "恒丰", "all": false, "start": 521, "end": 831, "oddity": 1 },
+        { "name": "泽德", "all": false, "start": 606, "end": 688, "oddity": 0 },
+        { "name": "紫竹", "all": false, "start": 690, "end": 884, "oddity": 0 }
     ]
 }
