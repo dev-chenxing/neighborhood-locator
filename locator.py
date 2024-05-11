@@ -18,6 +18,7 @@ def find_neighborhood(address: str, streets: dict[str, str]) -> Optional[str]:
             for neighborhood in neighborhoods:
                 if neighborhood["all"]:
                     neighborhood_name = neighborhood["name"]
+                    break
                 else:
                     address_number = get_address_number(street, address)
                     if neighborhood["oddity"] == address_number % 2:
@@ -27,6 +28,7 @@ def find_neighborhood(address: str, streets: dict[str, str]) -> Optional[str]:
                             <= neighborhood["end"]
                         ):
                             neighborhood_name = neighborhood["name"]
+                            break
             break
     return neighborhood_name
 
