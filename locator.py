@@ -8,7 +8,16 @@ import re
 
 
 def get_address_number(street: str, address: str) -> Optional[int]:
-    return int(re.search(rf"{street}(\d+)号", address).group(1))
+    try:
+        number = re.search(rf"{street}(\d+)号", address)
+        if number:
+            return int(number.group(1))
+        else:
+            number = re.search(rf"{street}(.+)号", address).group(1)
+            return int(re.search(r"\d+", number).group(0))
+    except:
+        print(f"[red]Error: {street} {address}")
+        return
 
 
 def find_neighborhood(address: str, streets: dict[str, str]) -> Optional[str]:
@@ -61,4 +70,7 @@ if __name__ == "__main__":
         excel.insert(len(excel.keys()), neighborhood_col_name, neighborhood_column)
     else:
         excel[neighborhood_col_name] = neighborhood_column
+    excel.sort_values(
+        by=neighborhood_col_name, ascending=True, inplace=True, ignore_index=True
+    )
     excel.to_excel(filename, index=False)
