@@ -42,21 +42,20 @@ def find_neighborhood(address: str, streets: dict[str, str]) -> Optional[str]:
     return neighborhood_name
 
 
-if __name__ == "__main__":
-    streets = json.load(open("streets.json", encoding="utf-8"))
-
-    neighborhood_col_name = "所属居委"
-    neighborhood_column = []
-
+def create_rich_table() -> Table:
     table = Table()
     table.add_column("地址", style="green", no_wrap=True)
     table.add_column(neighborhood_col_name, style="blue")
+    return table
 
-    filename, address_column = sys.argv[1], sys.argv[2]
-    excel = pandas.read_excel(filename)
-    addresses = excel[address_column].values
 
-    for address in addresses:
+def parse_addresses(excel):
+    streets_json = open("streets.json", encoding="utf-8")
+    streets = json.load(streets_json)
+
+    table = create_rich_table()
+
+    for address in excel[address_column].values:
         neighborhood_name = find_neighborhood(address, streets)
         if neighborhood_name:
             table.add_row(address, neighborhood_name)
@@ -64,8 +63,19 @@ if __name__ == "__main__":
         else:
             table.add_row(address, "[red]未知")
             neighborhood_column.append("未知")
-
     print(table)
+    streets_json.close()
+
+
+if __name__ == "__main__":
+    neighborhood_col_name = "所属居委"
+    neighborhood_column = []
+
+    excel_file, address_column = sys.argv[1], sys.argv[2]
+    excel = pandas.read_excel(excel_file)
+
+    parse_addresses(excel)
+
     if neighborhood_col_name not in excel:
         excel.insert(len(excel.keys()), neighborhood_col_name, neighborhood_column)
     else:
@@ -73,4 +83,4 @@ if __name__ == "__main__":
     excel.sort_values(
         by=neighborhood_col_name, ascending=True, inplace=True, ignore_index=True
     )
-    excel.to_excel(filename, index=False)
+    excel.to_excel(excel_file, index=False)
