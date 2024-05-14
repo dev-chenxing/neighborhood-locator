@@ -1,76 +1,85 @@
 {
-    "鹅掌坦大街": [{ "name": "鹅掌坦", "all": true }],
-    "鹅掌坦东街": [{ "name": "鹅掌坦", "all": true }],
-    "鹅掌坦西街": [{ "name": "鹅掌坦", "all": true }],
-    "汇华街": [{ "name": "恒丰", "all": true }],
-    "恒丰横四街": [{ "name": "恒丰", "all": true }],
-    "恒丰街": [{ "name": "恒丰", "all": true }],
-    "置德南街": [{ "name": "恒丰", "all": true }],
-    "横滘路": [{ "name": "横滘", "all": true }],
-    "横滘东华巷": [{ "name": "横滘", "all": true }],
-    "横滘东街": [{ "name": "横滘", "all": true }],
-    "横滘南胜二街": [{ "name": "横滘", "all": true }],
-    "横滘大街": [{ "name": "横滘", "all": true }],
-    "横滘货场": [{ "name": "横滘", "all": true }],
-    "同雅北街": [{ "name": "同雅", "all": true }],
-    "山坊南街": [{ "name": "怡德", "all": true }],
-    "得雅街": [{ "name": "怡德", "all": true }],
-    "明德一街": [{ "name": "金德", "all": true }],
-    "上步新街": [{ "name": "上步", "all": true }],
-    "上步东庆巷": [{ "name": "上步", "all": true }],
-    "上步大德巷": [{ "name": "上步", "all": true }],
-    "上步仁和巷": [{ "name": "上步", "all": true }],
-    "上步平宁巷": [{ "name": "上步", "all": true }],
-    "粤溪北路": [{ "name": "粤溪", "all": true }],
-    "粤溪南安大街": [{ "name": "粤溪", "all": true }],
-    "荔德路": [{ "name": "荔德", "all": true }],
-    "侨德街": [{ "name": "侨德", "all": true }],
-    "岭南北街": [{ "name": "岭南", "all": true }],
-    "田心二街": [{ "name": "田心", "all": true }],
-    "泽德北三街": [{ "name": "泽德", "all": true }],
-    "德康路": [
-        { "name": "紫竹", "all": false, "start": 10, "end": 12, "oddity": 0 },
-        { "name": "紫竹", "all": false, "start": 13, "end": 15, "oddity": 1 },
-        { "name": "紫竹", "all": false, "start": 170, "end": 182, "oddity": 0 }
-    ],
-    "粤溪大街": [
-        { "name": "粤溪", "all": false, "start": 162, "end": 196, "oddity": 0 },
-        { "name": "粤溪", "all": true }
-    ],
-    "新南二路": [{ "name": "望江", "all": false, "start": 2, "end": 58, "oddity": 0 }],
-    "渡头大街": [{ "name": "横滘", "all": false, "start": 2, "end": 22, "oddity": 0 }],
-    "明德街": [{ "name": "金德", "all": false, "start": 1, "end": 65, "oddity": 1 }],
-    "同康路": [
-        { "name": "鹅掌坦", "all": false, "start": 287, "end": 287, "oddity": 1 },
-        { "name": "同康", "all": true }
-    ],
-    "同嘉路": [
-        { "name": "金德", "all": false, "start": 1, "end": 47, "oddity": 1 },
-        { "name": "明德", "all": false, "start": 49, "end": 99, "oddity": 1 }
-    ],
-    "上埗大街": [
-        { "name": "同景", "all": false, "start": 30, "end": 34, "oddity": 0 },
-        { "name": "上步", "all": true }
-    ],
-    "上步大街": [
-        { "name": "同景", "all": false, "start": 30, "end": 34, "oddity": 0 },
-        { "name": "上步", "all": true }
-    ],
-    "上步路": [
-        { "name": "怡德", "all": false, "start": 1, "end": 39, "oddity": 1 },
-        { "name": "同景", "all": false, "start": 2, "end": 32, "oddity": 0 },
-        { "name": "上步", "all": false, "start": 34, "end": 34, "oddity": 0 }
-    ],
-    "西槎路": [
-        { "name": "田心", "all": false, "start": 1, "end": 1, "oddity": 1 },
-        { "name": "田心", "all": false, "start": 8, "end": 96, "oddity": 0 },
-        { "name": "鹅掌坦", "all": false, "start": 13, "end": 129, "oddity": 1 },
-        { "name": "荔德", "all": false, "start": 98, "end": 248, "oddity": 0 },
-        { "name": "金德", "all": false, "start": 257, "end": 335, "oddity": 1 },
-        { "name": "岭南", "all": false, "start": 377, "end": 465, "oddity": 1 },
-        { "name": "怡德", "all": false, "start": 462, "end": 502, "oddity": 0 },
-        { "name": "恒丰", "all": false, "start": 521, "end": 831, "oddity": 1 },
-        { "name": "泽德", "all": false, "start": 606, "end": 688, "oddity": 0 },
-        { "name": "紫竹", "all": false, "start": 690, "end": 884, "oddity": 0 }
-    ]
+  "鹅掌坦大街": [{ "name": "鹅掌坦", "all": true }],
+  "鹅掌坦东街": [{ "name": "鹅掌坦", "all": true }],
+  "鹅掌坦西街": [{ "name": "鹅掌坦", "all": true }],
+  "汇华街": [{ "name": "恒丰", "all": true }],
+  "恒丰横四街": [{ "name": "恒丰", "all": true }],
+  "恒丰街": [{ "name": "恒丰", "all": true }],
+  "置德南街": [{ "name": "恒丰", "all": true }],
+  "横滘路": [{ "name": "横滘", "all": true }],
+  "横滘东华巷": [{ "name": "横滘", "all": true }],
+  "横滘东街": [{ "name": "横滘", "all": true }],
+  "横滘南胜二街": [{ "name": "横滘", "all": true }],
+  "横滘大街": [{ "name": "横滘", "all": true }],
+  "横滘货场": [{ "name": "横滘", "all": true }],
+  "同雅北街": [{ "name": "同雅", "all": true }],
+  "山坊南街": [{ "name": "怡德", "all": true }],
+  "得雅街": [{ "name": "怡德", "all": true }],
+  "明德一街": [{ "name": "金德", "all": true }],
+  "上步新街": [{ "name": "上步", "all": true }],
+  "上步东庆巷": [{ "name": "上步", "all": true }],
+  "上步大德巷": [{ "name": "上步", "all": true }],
+  "上步仁和巷": [{ "name": "上步", "all": true }],
+  "上步平宁巷": [{ "name": "上步", "all": true }],
+  "粤溪南安大街": [{ "name": "粤溪", "all": true }],
+  "荔德路": [{ "name": "荔德", "all": true }],
+  "侨德街": [{ "name": "侨德", "all": true }],
+  "岭南北街": [{ "name": "岭南", "all": true }],
+  "田心二街": [{ "name": "田心", "all": true }],
+  "泽德北三街": [{ "name": "泽德", "all": true }],
+  "粤溪北路": [
+    { "name": "上步", "all": false, "start": 12, "end": 12, "oddity": 0 },
+    { "name": "粤溪", "all": true }
+  ],
+  "德康路": [
+    { "name": "紫竹", "all": false, "start": 10, "end": 12, "oddity": 0 },
+    { "name": "紫竹", "all": false, "start": 13, "end": 15, "oddity": 1 },
+    { "name": "紫竹", "all": false, "start": 170, "end": 182, "oddity": 0 }
+  ],
+  "粤溪大街": [
+    { "name": "粤溪", "all": false, "start": 162, "end": 196, "oddity": 0 },
+    { "name": "粤溪", "all": true }
+  ],
+  "新南二路": [
+    { "name": "望江", "all": false, "start": 2, "end": 58, "oddity": 0 }
+  ],
+  "渡头大街": [
+    { "name": "横滘", "all": false, "start": 2, "end": 22, "oddity": 0 }
+  ],
+  "明德街": [
+    { "name": "金德", "all": false, "start": 1, "end": 65, "oddity": 1 }
+  ],
+  "同康路": [
+    { "name": "鹅掌坦", "all": false, "start": 287, "end": 287, "oddity": 1 },
+    { "name": "同康", "all": true }
+  ],
+  "同嘉路": [
+    { "name": "金德", "all": false, "start": 1, "end": 47, "oddity": 1 },
+    { "name": "明德", "all": false, "start": 49, "end": 99, "oddity": 1 }
+  ],
+  "上埗大街": [
+    { "name": "同景", "all": false, "start": 30, "end": 34, "oddity": 0 },
+    { "name": "上步", "all": true }
+  ],
+  "上步大街": [
+    { "name": "同景", "all": false, "start": 30, "end": 34, "oddity": 0 },
+    { "name": "上步", "all": true }
+  ],
+  "上步路": [
+    { "name": "怡德", "all": false, "start": 1, "end": 39, "oddity": 1 },
+    { "name": "同景", "all": false, "start": 2, "end": 32, "oddity": 0 },
+    { "name": "上步", "all": false, "start": 34, "end": 34, "oddity": 0 }
+  ],
+  "西槎路": [
+    { "name": "田心", "all": false, "start": 1, "end": 1, "oddity": 1 },
+    { "name": "田心", "all": false, "start": 8, "end": 96, "oddity": 0 },
+    { "name": "鹅掌坦", "all": false, "start": 13, "end": 129, "oddity": 1 },
+    { "name": "荔德", "all": false, "start": 98, "end": 248, "oddity": 0 },
+    { "name": "金德", "all": false, "start": 257, "end": 335, "oddity": 1 },
+    { "name": "岭南", "all": false, "start": 377, "end": 465, "oddity": 1 },
+    { "name": "怡德", "all": false, "start": 462, "end": 502, "oddity": 0 },
+    { "name": "恒丰", "all": false, "start": 521, "end": 831, "oddity": 1 },
+    { "name": "泽德", "all": false, "start": 606, "end": 688, "oddity": 0 },
+    { "name": "紫竹", "all": false, "start": 690, "end": 884, "oddity": 0 }
+  ]
 }

@@ -1,0 +1,23 @@
+{
+  "name": "neighborhood-locator",
+  "version": "2.0.0",
+  "description": "A simple script that helps finding its neighborhood given a street address and street data",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amaliegay/neighborhood-locator.git"
+  },
+  "keywords": [
+    "xlsx"
+  ],
+  "author": "chenxing",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/amaliegay/neighborhood-locator/issues"
+  },
+  "homepage": "https://github.com/amaliegay/neighborhood-locator#readme",
+  "dependencies": {
+    "xlsx": "^0.18.5"
+  }
+}
