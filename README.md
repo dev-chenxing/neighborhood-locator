@@ -6,7 +6,7 @@
 
 ### 前期准备
 
-安装`Python 3.9+`. 如果`Python 3.9+`不支持你的电脑系统，请使用[JavaScript版](#如何使用Javascript版（推荐）)
+安装`Python 3.9+`. 如果`Python 3.9+`不支持你的电脑系统，请使用[JavaScript版](#如何使用javascript版)
 
 ### 安装
 
@@ -51,7 +51,7 @@ python locator.py 新开办企业情况清单.xlsx 住所
 
 ### 前期准备
 
-安装[Node.js v11.9.0+](https://nodejs.org/en/download).
+安装 [Node.js v11.9.0+](https://nodejs.org/en/download).
 
 ### 安装
 
