@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/amaliegay/neighborhood-locator#readme",
   "dependencies": {
+    "rich-console": "0.0.4",
     "xlsx": "^0.18.5"
   }
 }
