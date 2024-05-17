@@ -6,7 +6,7 @@
   "scripts": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/amaliegay/neighborhood-locator.git"
+    "url": "git+https://github.com/dev-chenxing/neighborhood-locator.git"
   },
   "keywords": [
     "xlsx"
@@ -14,9 +14,9 @@
   "author": "chenxing",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/amaliegay/neighborhood-locator/issues"
+    "url": "https://github.com/dev-chenxing/neighborhood-locator/issues"
   },
-  "homepage": "https://github.com/amaliegay/neighborhood-locator#readme",
+  "homepage": "https://github.com/dev-chenxing/neighborhood-locator#readme",
   "dependencies": {
     "rich-console": "0.0.4",
     "xlsx": "^0.18.5"

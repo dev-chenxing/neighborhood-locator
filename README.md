@@ -13,7 +13,7 @@
 克隆这个仓库到你的电脑:
 
 ```bash
-git clone https://github.com/amaliegay/neighborhood-locator.git
+git clone https://github.com/dev-chenxing/neighborhood-locator.git
 ```
 
 cd 到克隆目录下面后，创建虚拟环境:
@@ -58,7 +58,7 @@ python locator.py 新开办企业情况清单.xlsx 住所
 克隆这个仓库到你的电脑:
 
 ```bash
-git clone https://github.com/amaliegay/neighborhood-locator.git
+git clone https://github.com/dev-chenxing/neighborhood-locator.git
 ```
 
 cd 到克隆目录下面后，使用 npm 安装所需的包:
