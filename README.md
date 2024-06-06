@@ -68,7 +68,7 @@ cd neighborhood-locator
 npm install
 ```
 
-### 最后一步
+### 运行脚本
 
 在命令行运行 JavaScript 脚本:
 

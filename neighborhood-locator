@@ -1,0 +1,5 @@
+EXCEL_FILE=$1
+FILTER_STREET=$2
+NEW_EXCEL=$(node ./filter_street.js $EXCEL_FILE $FILTER_STREET -o)
+
+node ./neighborhood_locator.js $NEW_EXCEL 住所
