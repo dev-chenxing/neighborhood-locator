@@ -1,8 +1,9 @@
 const XLSX = require("xlsx");
 
 const excel_file = process.argv[2];
-const filter_street = process.argv[3];
-const new_excel_file = excel_file.replace("白云区", filter_street);
+const district = process.argv[3];
+const filter_street = process.argv[4];
+const new_excel_file = excel_file.replace(district, filter_street);
 
 const workbook = XLSX.readFile(excel_file);
 const sheet_name = workbook.SheetNames[0];
@@ -26,4 +27,4 @@ const new_worksheet = XLSX.utils.json_to_sheet(new_worksheet_json);
 XLSX.utils.book_append_sheet(new_workbook, new_worksheet, "主体名单");
 XLSX.writeFile(new_workbook, new_excel_file);
 
-if (process.argv[4] == "-o") console.log(new_excel_file);
+if (process.argv[5] == "-o") console.log(new_excel_file);

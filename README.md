@@ -49,11 +49,9 @@ python locator.py 新开办企业情况清单.xlsx 住所
 
 ## 如何使用JavaScript版
 
-### 前期准备
+### 安装Node和Node包
 
 安装 [Node.js v11.9.0+](https://nodejs.org/en/download).
-
-### 安装
 
 克隆这个仓库到你的电脑:
 
@@ -70,6 +68,8 @@ npm install
 
 ### 运行脚本
 
+#### 手動操作
+
 在命令行运行 JavaScript 脚本:
 
 ```bash
@@ -84,3 +84,12 @@ node index.js 新开办企业情况清单.xlsx 住所
 ```
 
 脚本运行完毕时，命令行会输出地址和所属居委的列表，同时输入的Excel表也会更新所属居委列表。
+
+#### Shell Script 全自動
+
+`neighborhood-locator`腳本是針對某特定格式的辦公表格而寫的全自動腳本，只需一行命令即可完成99%分居委的工作,但需要安裝`Shell`, 如：[Git Bash](https://git-scm.com/downloads)
+
+```bash
+chmod +x ./neighborhood-locator
+./neighborhood-locator 2024年5月区新开办企业情况清单.xlsx <區> <街道>
+```
