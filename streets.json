@@ -38,6 +38,7 @@
   "田心二街": [{ "name": "田心", "all": true }],
   "泽德北三街": [{ "name": "泽德", "all": true }],
   "怡富南街": [{ "name": "紫竹", "all": true }],
+  "富康路": [{ "name": "紫竹", "all": true }],
   "同景西街": [{ "name": "同景", "all": true }],
   "同雅街": [{ "name": "同雅", "all": true }],
   "同雅东街": [{ "name": "同雅", "all": true }],
@@ -50,6 +51,7 @@
   "上埗二街": [{ "name": "同景", "all": true }],
   "粤溪北路": [
     { "name": "上步", "all": false, "start": 12, "end": 12, "oddity": 0 },
+    { "name": "上步", "all": false, "start": 13, "end": 13, "oddity": 1 },
     { "name": "粤溪", "all": true }
   ],
   "粤溪南路": [
@@ -59,6 +61,9 @@
   "田心西路": [
     { "name": "荔德", "all": false, "oddity": 1 },
     { "name": "田心", "all": false, "oddity": 0 }
+  ],
+  "石槎路": [
+    { "name": "紫竹", "all": false, "start": 28, "end": 38, "oddity": 0 }
   ],
   "德康路": [
     { "name": "紫竹", "all": false, "start": 10, "end": 12, "oddity": 0 },
