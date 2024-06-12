@@ -82,7 +82,10 @@
   "新南二路": [
     { "name": "望江", "all": false, "start": 2, "end": 58, "oddity": 0 }
   ],
-  "横滘二路": [{ "name": "横滘", "all": true }],
+  "横滘二路": [
+    { "name": "横滘", "oddity": 0 },
+    { "name": "横滘", "oddity": 1 }
+  ],
   "渡头大街": [
     { "name": "横滘", "all": false, "start": 2, "end": 22, "oddity": 0 }
   ],
