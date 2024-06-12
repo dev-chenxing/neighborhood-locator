@@ -74,7 +74,11 @@
     { "name": "粤溪", "all": false, "start": 162, "end": 196, "oddity": 0 },
     { "name": "粤溪", "all": true }
   ],
-  "新南一路": [{ "name": "怡德", "all": true }],
+  "新南一路": [
+    { "name": "横滘", "all": false, "start": 1, "end": 5, "oddity": 1 },
+    { "name": "上步", "all": false, "start": 7, "end": 7, "oddity": 1 },
+    { "name": "怡德", "all": false, "oddity": 0 }
+  ],
   "新南二路": [
     { "name": "望江", "all": false, "start": 2, "end": 58, "oddity": 0 }
   ],
