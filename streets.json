@@ -40,6 +40,7 @@
   "怡富南街": [{ "name": "紫竹", "all": true }],
   "富康路": [{ "name": "紫竹", "all": true }],
   "同景西街": [{ "name": "同景", "all": true }],
+  "同景街": [{ "name": "同景", "all": true }],
   "同雅街": [{ "name": "同雅", "all": true }],
   "同雅东街": [{ "name": "同雅", "all": true }],
   "横滘南胜直街": [{ "name": "横滘", "all": true }],
@@ -50,6 +51,8 @@
   "上步二街": [{ "name": "同景", "all": true }],
   "上埗二街": [{ "name": "同景", "all": true }],
   "粤溪北路": [
+    { "name": "侨德", "all": false, "start": 4, "end": 4, "oddity": 0 },
+    { "name": "侨德", "all": false, "start": 5, "end": 5, "oddity": 1 },
     { "name": "上步", "all": false, "start": 12, "end": 12, "oddity": 0 },
     { "name": "上步", "all": false, "start": 13, "end": 13, "oddity": 1 },
     { "name": "粤溪", "all": true }
