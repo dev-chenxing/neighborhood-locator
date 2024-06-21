@@ -52,7 +52,7 @@
   "上埗二街": [{ "name": "同景", "all": true }],
   "粤溪北路": [
     { "name": "侨德", "all": false, "start": 4, "end": 4, "oddity": 0 },
-    { "name": "侨德", "all": false, "start": 5, "end": 5, "oddity": 1 },
+    { "name": "", "all": false, "start": 5, "end": 5, "oddity": 1 },
     { "name": "上步", "all": false, "start": 12, "end": 12, "oddity": 0 },
     { "name": "上步", "all": false, "start": 13, "end": 13, "oddity": 1 },
     { "name": "粤溪", "all": true }
