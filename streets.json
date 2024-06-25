@@ -87,7 +87,7 @@
   ],
   "横滘二路": [
     { "name": "横滘", "oddity": 0 },
-    { "name": "横滘", "oddity": 1 }
+    { "name": "泽德", "oddity": 1 }
   ],
   "渡头大街": [
     { "name": "横滘", "all": false, "start": 2, "end": 22, "oddity": 0 }
