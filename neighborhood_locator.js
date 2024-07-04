@@ -81,18 +81,24 @@ const find_neighborhood = (address, streets) => {
   return neighborhood_name;
 };
 
+let new_worksheet_json = [];
+
 for (const row of worksheet_json) {
   const address = row[address_column];
-  row[neighborhood_col_name] = find_neighborhood(address, streets);
+  const neighborhood = find_neighborhood(address, streets);
+  if (neighborhood) {
+    row[neighborhood_col_name] = neighborhood;
+    new_worksheet_json.push(row);
+  }
 }
 
-worksheet_json.sort((row1, row2) =>
+new_worksheet_json.sort((row1, row2) =>
   row1[address_column] < row2[address_column] ? 1 : -1
 );
 
-worksheet_json.sort((row1, row2) =>
+new_worksheet_json.sort((row1, row2) =>
   row1[neighborhood_col_name] < row2[neighborhood_col_name] ? 1 : -1
 );
 
-workbook.Sheets[sheet_name] = XLSX.utils.json_to_sheet(worksheet_json);
+workbook.Sheets[sheet_name] = XLSX.utils.json_to_sheet(new_worksheet_json);
 XLSX.writeFile(workbook, excel_file);
