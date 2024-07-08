@@ -45,8 +45,7 @@ node index.js 新开办企业情况清单.xlsx 住所
 `neighborhood-locator`腳本是針對某特定格式的辦公表格而寫的全自動腳本，只需一行命令即可完成 99%分居委的工作,但需要安裝`Shell`, 如：[Git Bash](https://git-scm.com/downloads)
 
 ```bash
-chmod +x ./neighborhood-locator
-./neighborhood-locator 2024年5月区新开办企业情况清单.xlsx <區> <街道>
+sh ./neighborhood-locator 2024年5月区新开办企业情况清单.xlsx <區> <街道>
 ```
 
 ## 如何使用 Python 版
