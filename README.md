@@ -28,19 +28,14 @@ npm install
 在命令行运行 JavaScript 脚本:
 
 ```bash
-node index.js <input.xlsx> <col_name>
+node ./neighborhood_locator.js ./input.xlsx 地址 社区 -l ERROR -s 0 -c true -r false -d false
 ```
 
-这里，`<input.xlsx>`是输入地址所在的 Excel 表文件名，`<col_name>`是表中地址一列的表头名。
-例如，如果输入的 Excel 表是`新开办企业情况清单.xlsx`, `住所`是地址一列的表头名，则应运行:
-
-```bash
-node index.js 新开办企业情况清单.xlsx 住所
-```
+这里，`<input.xlsx>`是输入地址所在的 Excel 表文件名。
 
 脚本运行完毕时，命令行会输出地址和所属居委的列表，同时输入的 Excel 表也会更新所属居委列表。
 
-#### Shell Script 全自動
+#### Shell Script 全自動 (不推荐)
 
 `neighborhood-locator`腳本是針對某特定格式的辦公表格而寫的全自動腳本，只需一行命令即可完成 99%分居委的工作,但需要安裝`Shell`, 如：[Git Bash](https://git-scm.com/downloads)
 
