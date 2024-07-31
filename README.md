@@ -28,7 +28,7 @@ npm install
 在命令行运行 JavaScript 脚本:
 
 ```bash
-node ./neighborhood_locator.js ./input.xlsx 地址 社区 -l ERROR -s 0 -c true -r false -d false
+node ./neighborhood_locator.js "./生活美容美发和快递服务类企业底册名单.xls" 住所 所在居委 --log-level ERROR --create-copy true --delete-unknown false
 ```
 
 这里，`<input.xlsx>`是输入地址所在的 Excel 表文件名。
