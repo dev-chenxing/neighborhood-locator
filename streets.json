@@ -82,12 +82,12 @@
   "泽德南二街": [{ "name": "泽德", "all": true }],
   "泽德南三街": [{ "name": "泽德", "all": true }],
   "泽德南四街": [{ "name": "汇德", "all": true }],
+  "泽德路南四街": [{ "name": "汇德", "all": true }],
   "泽德南五": [{ "name": "汇德", "all": true }],
   "泽德北四街": [{ "name": "汇德", "all": true }],
   "泽德北五街": [{ "name": "汇德", "all": true }],
   "泽德北六街": [{ "name": "汇德", "all": true }],
   "泽德花园": [{ "name": "泽德", "all": true }],
-  "泽德": [{ "name": "泽德", "all": true }],
   "德林街": [{ "name": "明德", "all": true }],
   "怡富南街": [{ "name": "紫竹", "all": true }],
   "怡康南街": [{ "name": "紫竹", "all": true }],
@@ -143,6 +143,7 @@
     { "name": "荔德", "all": false, "oddity": 1 },
     { "name": "田心", "all": false, "oddity": 0 }
   ],
+  "田心大路": [{ "name": "田心", "all": true }],
   "增宝街": [{ "name": "田心", "all": true }],
   "石槎路": [{ "name": "紫竹", "all": false, "start": 28, "end": 38, "oddity": 0 }],
   "德康路": [
@@ -205,7 +206,7 @@
   "上步路": [
     { "name": "怡德", "all": false, "start": 1, "end": 39, "oddity": 1 },
     { "name": "同景", "all": false, "start": 2, "end": 32, "oddity": 0 },
-    { "name": "上步", "all": false, "start": 34, "end": 34, "oddity": 0 },
+    { "name": "上步", "all": false, "start": 34, "end": 38, "oddity": 0 },
     { "name": "上步", "all": false, "start": 49, "end": 69, "oddity": 1 }
   ],
   "西槎路": [
