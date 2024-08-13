@@ -133,12 +133,10 @@
   ],
   "粤溪南路": [
     { "name": "侨德", "all": false, "start": 1, "end": 71, "oddity": 1 },
+    { "name": "荔德", "all": false, "oddity": 0 },
     { "name": "粤溪", "all": true }
   ],
-  "粤溪南": [
-    { "name": "侨德", "all": false, "start": 1, "end": 71, "oddity": 1 },
-    { "name": "粤溪", "all": true }
-  ],
+  "粤溪南": [{ "name": "粤溪", "all": true }],
   "田心西路": [
     { "name": "荔德", "all": false, "oddity": 1 },
     { "name": "田心", "all": false, "oddity": 0 }
