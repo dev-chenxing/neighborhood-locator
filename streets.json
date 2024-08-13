@@ -132,11 +132,11 @@
     { "name": "粤溪", "all": true }
   ],
   "粤溪南路": [
-    { "name": "侨德", "all": false, "start": 1, "end": 5, "oddity": 1 },
+    { "name": "侨德", "all": false, "start": 1, "end": 71, "oddity": 1 },
     { "name": "粤溪", "all": true }
   ],
   "粤溪南": [
-    { "name": "侨德", "all": false, "start": 1, "end": 5, "oddity": 1 },
+    { "name": "侨德", "all": false, "start": 1, "end": 71, "oddity": 1 },
     { "name": "粤溪", "all": true }
   ],
   "田心西路": [
@@ -152,7 +152,7 @@
     { "name": "紫竹", "all": false, "start": 170, "end": 182, "oddity": 0 }
   ],
   "粤溪大街": [
-    { "name": "粤溪", "all": false, "start": 162, "end": 196, "oddity": 0 },
+    { "name": "侨德", "all": false, "start": 140, "end": 196, "oddity": 0 },
     { "name": "粤溪", "all": true }
   ],
   "新南一路": [
