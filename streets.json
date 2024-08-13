@@ -168,9 +168,12 @@
     { "name": "横滘", "oddity": 0 },
     { "name": "泽德", "oddity": 1 }
   ],
+  "渡头大街龙船": [{ "name": "望江", "all": true }],
+  "渡头大街水闸": [{ "name": "望江", "all": true }],
   "渡头大街": [
-    { "name": "横滘", "all": false, "start": 2, "end": 22, "oddity": 0 },
-    { "name": "望江", "all": false, "start": 37, "end": 37, "oddity": 1 }
+    { "name": "横滘", "all": false, "start": 2, "end": 20, "oddity": 0 },
+    { "name": "横滘", "all": false, "start": 1, "end": 19, "oddity": 1 },
+    { "name": "望江", "all": true }
   ],
   "明德街": [
     { "name": "金德", "all": false, "start": 1, "end": 65, "oddity": 1 },
