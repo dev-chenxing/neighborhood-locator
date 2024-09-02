@@ -1,4 +1,6 @@
 {
+  "聚源街": [{ "name": "石井街", "all": true }],
+  "槎龙": [{ "name": "松洲街", "all": true }],
   "阳光一街": [{ "name": "松洲街", "all": true }],
   "丽康南一街": [{ "name": "棠景街", "all": true }],
   "鹅掌坦大街": [{ "name": "鹅掌坦", "all": true }],
@@ -108,6 +110,7 @@
   "泽德北四街": [{ "name": "汇德", "all": true }],
   "泽德北五街": [{ "name": "汇德", "all": true }],
   "泽德北六街": [{ "name": "汇德", "all": true }],
+  "泽德花园二期": [{ "name": "汇德", "all": true }],
   "泽德花园": [{ "name": "泽德", "all": true }],
   "富海花园": [{ "name": "明德", "all": true }],
   "德林街": [{ "name": "明德", "all": true }],
@@ -192,8 +195,10 @@
   "新南二路": [{ "name": "望江", "all": true }],
   "横滘二马路": [{ "name": "横滘", "all": true }],
   "横滘二路": [
-    { "name": "横滘", "oddity": 0 },
-    { "name": "泽德", "oddity": 1 }
+    { "name": "横滘", "start": 2, "end": 60, "oddity": 0 },
+    { "name": "泽德", "start": 1, "end": 53, "oddity": 1 },
+    { "name": "汇德", "start": 55, "end": 59, "oddity": 1 },
+    { "name": "横滘", "all": true }
   ],
   "横滘商业二街": [{ "name": "横滘", "all": true }],
   "渡头大街龙船": [{ "name": "望江", "all": true }],
@@ -213,10 +218,12 @@
   ],
   "同康路": [
     { "name": "鹅掌坦", "all": false, "start": 287, "end": 287, "oddity": 1 },
+    { "name": "松洲街", "all": false, "start": 323, "end": 323, "oddity": 1 },
     { "name": "同康", "all": true }
   ],
   "同嘉路": [
     { "name": "金德", "all": false, "start": 1, "end": 47, "oddity": 1 },
+    { "name": "", "all": false, "start": 223, "end": 223, "oddity": 1 },
     { "name": "明德", "all": false, "start": 49, "end": 377, "oddity": 1 },
     { "name": "岭南", "all": false, "start": 10, "end": 12, "oddity": 0 }
   ],
