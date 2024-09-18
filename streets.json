@@ -81,7 +81,6 @@
   "上步大塘街": [{ "name": "上步", "all": true }],
   "上步崇化巷": [{ "name": "上步", "all": true }],
   "上步潭底商贸广场": [{ "name": "上步", "all": true }],
-  "上步村": [{ "name": "上步", "all": true }],
   "荔德路": [{ "name": "荔德", "all": true }],
   "同新街": [{ "name": "荔德", "all": true }],
   "同祥街": [{ "name": "荔德", "all": true }],
@@ -142,6 +141,7 @@
   "上步三街": [{ "name": "同景", "all": true }],
   "上步二街": [{ "name": "同景", "all": true }],
   "上埗二街": [{ "name": "同景", "all": true }],
+
   "粤溪南安大街": [{ "name": "粤溪", "all": true }],
   "粤溪海防街": [{ "name": "粤溪", "all": true }],
   "粤溪新村": [{ "name": "粤溪", "all": true }],
@@ -192,7 +192,10 @@
     { "name": "上步", "all": false, "start": 7, "end": 7, "oddity": 1 },
     { "name": "怡德", "all": false, "oddity": 0 }
   ],
-  "新南二路": [{ "name": "望江", "all": true }],
+  "新南二路": [
+    { "name": "", "all": false, "start": 11, "end": 11, "oddity": 1 },
+    { "name": "望江", "all": true }
+  ],
   "横滘二马路": [{ "name": "横滘", "all": true }],
   "横滘二路": [
     { "name": "横滘", "start": 2, "end": 60, "oddity": 0 },
@@ -239,9 +242,11 @@
     { "name": "上步", "all": false, "start": 34, "end": 56, "oddity": 0 },
     { "name": "上步", "all": false, "start": 49, "end": 71, "oddity": 1 }
   ],
+  "上步村": [{ "name": "上步", "all": true }],
   "西槎路": [
     { "name": "田心", "all": false, "start": 1, "end": 1, "oddity": 1 },
     { "name": "田心", "all": false, "start": 8, "end": 96, "oddity": 0 },
+    { "name": "", "all": false, "start": 53, "end": 53, "oddity": 1 },
     { "name": "鹅掌坦", "all": false, "start": 13, "end": 129, "oddity": 1 },
     { "name": "荔德", "all": false, "start": 98, "end": 248, "oddity": 0 },
     { "name": "恒丰", "all": false, "start": 221, "end": 221, "oddity": 1 },
@@ -252,6 +257,7 @@
     { "name": "怡德", "all": false, "start": 462, "end": 502, "oddity": 0 },
     { "name": "积德", "all": false, "start": 518, "end": 540, "oddity": 0 },
     { "name": "恒丰", "all": false, "start": 521, "end": 831, "oddity": 1 },
+    { "name": "横滘", "all": false, "start": 570, "end": 596, "oddity": 0 },
     { "name": "泽德", "all": false, "start": 606, "end": 688, "oddity": 0 },
     { "name": "紫竹", "all": false, "start": 690, "end": 884, "oddity": 0 }
   ]
