@@ -5,6 +5,7 @@
   "丽康南一街": [{ "name": "棠景街", "all": true }],
   "鹅掌坦大街": [{ "name": "鹅掌坦", "all": true }],
   "鹅掌坦东街": [{ "name": "鹅掌坦", "all": true }],
+  "骐利广场": [{ "name": "鹅掌坦", "all": true }],
   "鹅掌坦西街": [{ "name": "鹅掌坦", "all": true }],
   "鹅掌坦新街": [{ "name": "鹅掌坦", "all": true }],
   "鹅掌坦海边街": [{ "name": "鹅掌坦", "all": true }],
@@ -50,7 +51,6 @@
   "横滘货场": [{ "name": "横滘", "all": true }],
   "横滘村货场路": [{ "name": "横滘", "all": true }],
   "同雅北街": [{ "name": "同雅", "all": true }],
-
   "得雅街": [{ "name": "怡德", "all": true }],
   "上步花园B2": [{ "name": "上步", "all": true }],
   "上步花园": [{ "name": "怡德", "all": true }],
@@ -141,7 +141,6 @@
   "上步三街": [{ "name": "同景", "all": true }],
   "上步二街": [{ "name": "同景", "all": true }],
   "上埗二街": [{ "name": "同景", "all": true }],
-
   "粤溪南安大街": [{ "name": "粤溪", "all": true }],
   "粤溪海防街": [{ "name": "粤溪", "all": true }],
   "粤溪新村": [{ "name": "粤溪", "all": true }],
@@ -152,8 +151,8 @@
   "粤溪南安": [{ "name": "粤溪", "all": true }],
   "粤溪南厚巷": [{ "name": "粤溪", "all": true }],
   "山坊南街": [
-    { "name": "怡德", "all": false, "start": 1, "end": 29, "oddity": 1 },
-    { "name": "上步", "all": false, "start": 55, "end": 67, "oddity": 1 }
+    { "name": "怡德", "all": false, "start": 1, "end": 51, "oddity": 1 },
+    { "name": "上步", "all": false, "start": 53, "end": 67, "oddity": 1 }
   ],
   "粤溪北路": [
     { "name": "侨德", "all": false, "start": 4, "end": 4, "oddity": 0 },
