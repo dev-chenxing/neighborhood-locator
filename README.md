@@ -1,8 +1,8 @@
 # 自动化分居委
 
-自动化分居委是一个用 Python 和 JavaScript 写的简易小工具，目的在于将给定的某街道辖区内的任一地址对应到其所属社区（aka 居委）
+自动化分居委是一个用 JavaScript 写的简易小工具，目的在于将给定的某街道辖区内的任一地址对应到其所属社区（aka 居委）。
 
-## 如何使用 JavaScript 版（推荐）
+## 如何使用
 
 ### 安装 Node 和 Node 包
 
@@ -28,7 +28,7 @@ npm install
 在命令行运行 JavaScript 脚本:
 
 ```bash
-node ./neighborhood_locator.js "./生活美容美发和快递服务类企业底册名单.xlsx" 住所 所在居委 --log-level ERROR --create-copy true --delete-unknown false
+node ./neighborhood_locator.js "./xx企业底册名单.xlsx" 住所 所在居委 --log-level ERROR --create-copy true --delete-unknown false
 ```
 
 这里，`<input.xlsx>`是输入地址所在的 Excel 表文件名。
