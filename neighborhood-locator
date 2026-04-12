@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
+set -e
+
 EXCEL_FILE=$1
 DISTRICT=$2
 FILTER_STREET=$3
