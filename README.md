@@ -28,10 +28,12 @@ npm install
 在命令行运行 JavaScript 脚本:
 
 ```bash
-node ./neighborhood_locator.js "./生活美容美发和快递服务类企业底册名单.xls" 住所 所在居委 --log-level ERROR --create-copy true --delete-unknown false
+node ./neighborhood_locator.js "./生活美容美发和快递服务类企业底册名单.xlsx" 住所 所在居委 --log-level ERROR --create-copy true --delete-unknown false
 ```
 
 这里，`<input.xlsx>`是输入地址所在的 Excel 表文件名。
+
+当前 JavaScript 版仅支持 `.xlsx` 文件，不再支持 `.xls`。
 
 脚本运行完毕时，命令行会输出地址和所属居委的列表，同时输入的 Excel 表也会更新所属居委列表。
 
@@ -44,47 +46,3 @@ chmod +x ./neighborhood-locator
 ./neighborhood-locator 2024年5月区新开办企业情况清单.xlsx <區> <街道>
 ```
 
-## 如何使用 Python 版
-
-### 前期准备
-
-安装`Python 3.9+`. 如果`Python 3.9+`不支持你的电脑系统，请使用[JavaScript 版](#如何使用javascript版)
-
-### 安装
-
-克隆这个仓库到你的电脑:
-
-```bash
-git clone https://github.com/dev-chenxing/neighborhood-locator.git
-```
-
-cd 到克隆目录下面后，创建虚拟环境:
-
-```powershell
-cd neighborhood-locator
-python -m venv venv
-venv/Scripts/activate # source venv/bin/activate 如果是Linux系统
-```
-
-使用 pip 安装所需的 Python 包:
-
-```bash
-pip install -r requirements.txt
-```
-
-### 最后一步
-
-在命令行运行 Python 脚本:
-
-```bash
-python locator.py <input.xlsx> <col_name>
-```
-
-这里，`<input.xlsx>`是输入地址所在的 Excel 表文件名，`<col_name>`是表中地址一列的表头名。
-例如，如果输入的 Excel 表是`新开办企业情况清单.xlsx`, `住所`是地址一列的表头名，则应运行:
-
-```bash
-python locator.py 新开办企业情况清单.xlsx 住所
-```
-
-脚本运行完毕时，命令行会输出地址和所属居委的列表，同时输入的 Excel 表也会更新所属居委列表。
