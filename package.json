@@ -1,8 +1,22 @@
 {
   "name": "neighborhood-locator",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "A simple script that helps finding its neighborhood given a street address and street data",
   "main": "index.js",
+  "types": "index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "require": "./index.js",
+      "default": "./index.js"
+    },
+    "./resolver": {
+      "types": "./index.d.ts",
+      "require": "./resolver.js",
+      "default": "./resolver.js"
+    },
+    "./streets.json": "./streets.json"
+  },
   "scripts": {},
   "repository": {
     "type": "git",

@@ -37,6 +37,16 @@ node ./neighborhood_locator.js "./xx企业底册名单.xlsx" 住所 所在居委
 
 脚本运行完毕时，命令行会输出地址和所属居委的列表，同时输入的 Excel 表也会更新所属居委列表。
 
+### 作为模块使用
+
+如果你要在别的项目里直接复用解析逻辑，可以直接从包入口导入：
+
+```js
+const { 匹配所属社区 } = require("neighborhood-locator");
+
+const 社区 = 匹配所属社区("xx路129号");
+```
+
 #### Shell Script 全自動 (不推荐)
 
 `neighborhood-locator`腳本是針對某特定格式的辦公表格而寫的全自動腳本，只需一行命令即可完成 99%分居委的工作,但需要安裝`Shell`, 如：[Git Bash](https://git-scm.com/downloads)
@@ -45,4 +55,3 @@ node ./neighborhood_locator.js "./xx企业底册名单.xlsx" 住所 所在居委
 chmod +x ./neighborhood-locator
 ./neighborhood-locator 2024年5月区新开办企业情况清单.xlsx <區> <街道>
 ```
-
