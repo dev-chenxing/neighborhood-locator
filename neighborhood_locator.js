@@ -1,7 +1,7 @@
-const fs = require("fs");
 const richConsle = require("rich-console");
 const yargs = require("yargs");
 const { hideBin } = require("yargs/helpers");
+const { 匹配所属社区 } = require("./resolver");
 const {
   createWorkbook,
   getWorksheetByIndex,
@@ -49,67 +49,13 @@ const args = yargs(hideBin(process.argv))
 
   .parse();
 
-let rawdata = fs.readFileSync("streets.json");
-let streets = JSON.parse(rawdata);
-
-const get_address_number = (street, address) => {
-  const regexp = new RegExp(`${street}(\\d+)号`);
-  let number = address.match(regexp);
-  if (number) return Number(number[1]);
-  else {
-    let match_result = address.match(new RegExp(`${street}(.+)号`));
-    if (match_result) {
-      number = match_result[1];
-      match_result = number.match(/\d+/g);
-    } else {
-      match_result = address.match(/\d+/g);
-    }
-    if (match_result) {
-      return Number(match_result[0]);
-    } else {
-      console.log(street, address);
-      return 0;
-    }
-  }
-};
-
-const find_neighborhood = (address, streets, logLevel) => {
-  let neighborhood_name = null;
-  for (const street in streets) {
-    const neighborhoods = streets[street];
-    if (address.includes(street)) {
-      for (const neighborhood of neighborhoods) {
-        if (neighborhood["all"]) {
-          neighborhood_name = neighborhood["name"];
-          break;
-        } else {
-          const address_number = get_address_number(street, address);
-          if (neighborhood["oddity"] == address_number % 2) {
-            if (neighborhood["start"]) {
-              if (
-                neighborhood["start"] <= address_number &&
-                address_number <= neighborhood["end"]
-              ) {
-                neighborhood_name = neighborhood["name"];
-                break;
-              }
-            } else {
-              neighborhood_name = neighborhood["name"];
-              break;
-            }
-          }
-        }
-      }
-      break;
-    }
-  }
-  if (neighborhood_name) {
+const logNeighborhoodResult = (address, neighborhoodName, logLevel) => {
+  if (neighborhoodName) {
     if (logLevel == "INFO")
-      richConsle.log(`<blue>${neighborhood_name}</blue> <green>${address}</green>`);
+      richConsle.log(`<blue>${neighborhoodName}</blue> <green>${address}</green>`);
   } else {
     richConsle.log(`<red>未知</red> <green>${address}</green>`);
   }
-  return neighborhood_name;
 };
 
 async function main() {
@@ -129,7 +75,8 @@ async function main() {
   for (const row of rows) {
     const address = row[address_column];
     if (!address) richConsle.log(`<red>${JSON.stringify(row)}</red>`);
-    const neighborhood = find_neighborhood(String(address || ""), streets, logLevel);
+    const neighborhood = 匹配所属社区(String(address || ""));
+    logNeighborhoodResult(String(address || ""), neighborhood, logLevel);
     if (neighborhood) {
       finished_count = finished_count + 1;
     }
