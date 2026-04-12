@@ -1,8 +1,17 @@
-const XLSX = require("xlsx");
 const fs = require("fs");
 const richConsle = require("rich-console");
 const yargs = require("yargs");
 const { hideBin } = require("yargs/helpers");
+const {
+  createWorkbook,
+  getWorksheetByIndex,
+  loadWorkbook,
+  saveWorkbook,
+  worksheetToMatrix,
+  worksheetToObjects,
+  writeMatrixToWorksheet,
+  writeObjectsToWorksheet,
+} = require("./excel");
 
 const args = yargs(hideBin(process.argv))
   .demandCommand(1, "Missing arguments: <input.xlsx>")
@@ -40,14 +49,6 @@ const args = yargs(hideBin(process.argv))
 
   .parse();
 
-const [excel_file, address_column, neighborhood_col_name] = args._;
-const { logLevel, sheetIndex, createCopy, reorder, deleteUnknown } = args;
-
-const workbook = XLSX.readFile(excel_file);
-const sheet_name = workbook.SheetNames[sheetIndex];
-const worksheet = workbook.Sheets[sheet_name];
-const worksheet_json = XLSX.utils.sheet_to_json(worksheet);
-
 let rawdata = fs.readFileSync("streets.json");
 let streets = JSON.parse(rawdata);
 
@@ -72,7 +73,7 @@ const get_address_number = (street, address) => {
   }
 };
 
-const find_neighborhood = (address, streets) => {
+const find_neighborhood = (address, streets, logLevel) => {
   let neighborhood_name = null;
   for (const street in streets) {
     const neighborhoods = streets[street];
@@ -104,55 +105,80 @@ const find_neighborhood = (address, streets) => {
   }
   if (neighborhood_name) {
     if (logLevel == "INFO")
-      richConsle.log(
-        `<blue>${neighborhood_name}</blue> <green>${address}</green>`
-      );
+      richConsle.log(`<blue>${neighborhood_name}</blue> <green>${address}</green>`);
   } else {
     richConsle.log(`<red>未知</red> <green>${address}</green>`);
   }
   return neighborhood_name;
 };
 
-let new_worksheet_json = [];
-let finished_count = 0;
-const total_count = worksheet_json.length;
+async function main() {
+  const [excel_file, address_column, neighborhood_col_name] = args._;
+  const { logLevel, sheetIndex, createCopy, reorder, deleteUnknown } = args;
+  void logLevel;
 
-for (const row of worksheet_json) {
-  const address = row[address_column];
-  if (!address) richConsle.log(`<red>${JSON.stringify(row)}</red>`);
-  const neighborhood = find_neighborhood(address, streets);
-  if (neighborhood) {
-    finished_count = finished_count + 1;
-  }
-  if (!deleteUnknown || neighborhood) {
-    row[neighborhood_col_name] = neighborhood;
-    new_worksheet_json.push(row);
-  }
-}
+  const workbook = await loadWorkbook(excel_file);
+  const worksheet = getWorksheetByIndex(workbook, sheetIndex);
+  const sheet_name = worksheet.name;
+  const { headers, rows } = worksheetToObjects(worksheet);
 
-richConsle.log(`
-  已分居委<cyan>${finished_count}</cyan>条，共<cyan>${total_count}</cyan>条，完成率<cyan>${(
-  (finished_count / total_count) *
-  100
-).toFixed(2)}%</cyan>
+  const new_worksheet_json = [];
+  let finished_count = 0;
+  const total_count = rows.length;
+
+  for (const row of rows) {
+    const address = row[address_column];
+    if (!address) richConsle.log(`<red>${JSON.stringify(row)}</red>`);
+    const neighborhood = find_neighborhood(String(address || ""), streets, logLevel);
+    if (neighborhood) {
+      finished_count = finished_count + 1;
+    }
+    if (!deleteUnknown || neighborhood) {
+      row[neighborhood_col_name] = neighborhood;
+      new_worksheet_json.push(row);
+    }
+  }
+
+  richConsle.log(`
+  已分居委<cyan>${finished_count}</cyan>条，共<cyan>${total_count}</cyan>条，完成率<cyan>${(total_count ===
+  0
+    ? 0
+    : (finished_count / total_count) * 100
+  ).toFixed(2)}%</cyan>
   `);
 
-if (reorder) {
-  new_worksheet_json.sort((row1, row2) =>
-    row1[address_column] < row2[address_column] ? 1 : -1
-  );
-  new_worksheet_json.sort((row1, row2) =>
-    row1[neighborhood_col_name] < row2[neighborhood_col_name] ? 1 : -1
-  );
+  if (reorder) {
+    new_worksheet_json.sort((row1, row2) => (row1[address_column] < row2[address_column] ? 1 : -1));
+    new_worksheet_json.sort((row1, row2) =>
+      row1[neighborhood_col_name] < row2[neighborhood_col_name] ? 1 : -1,
+    );
+  }
+
+  const outputHeaders = headers.includes(neighborhood_col_name)
+    ? headers
+    : [...headers, neighborhood_col_name];
+
+  if (createCopy) {
+    const outputWorkbook = createWorkbook();
+    const outputWorksheet = outputWorkbook.addWorksheet(sheet_name);
+    writeObjectsToWorksheet(outputWorksheet, outputHeaders, new_worksheet_json);
+    const new_excel_file = excel_file.replace(/\.xlsx$/i, " - 副本.xlsx");
+    await saveWorkbook(outputWorkbook, new_excel_file);
+  } else {
+    const outputWorkbook = createWorkbook();
+    workbook.worksheets.forEach((sourceSheet, index) => {
+      const outputWorksheet = outputWorkbook.addWorksheet(sourceSheet.name);
+      if (index === sheetIndex) {
+        writeObjectsToWorksheet(outputWorksheet, outputHeaders, new_worksheet_json);
+        return;
+      }
+      writeMatrixToWorksheet(outputWorksheet, worksheetToMatrix(sourceSheet));
+    });
+    await saveWorkbook(outputWorkbook, excel_file);
+  }
 }
 
-if (createCopy) {
-  let new_workbook = XLSX.utils.book_new();
-  const new_worksheet = XLSX.utils.json_to_sheet(new_worksheet_json);
-  XLSX.utils.book_append_sheet(new_workbook, new_worksheet, sheet_name);
-  const new_excel_file = excel_file.replace(".xls", " - 副本.xls");
-  XLSX.writeFile(new_workbook, new_excel_file);
-} else {
-  workbook.Sheets[sheet_name] = XLSX.utils.json_to_sheet(new_worksheet_json);
-  XLSX.writeFile(workbook, excel_file);
-}
+main().catch((error) => {
+  console.error(error instanceof Error ? error.message : String(error));
+  process.exitCode = 1;
+});
