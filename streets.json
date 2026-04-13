@@ -98,6 +98,7 @@
 	"岭南花园": [{ "name": "岭南", "all": true }],
 	"同辉街": [{ "name": "田心", "all": true }],
 	"田心二街": [{ "name": "田心", "all": true }],
+	"万科金域悦府": [{ "name": "田心", "all": true }],
 	"泽德北三街": [{ "name": "泽德", "all": true }],
 	"泽德南一街": [{ "name": "泽德", "all": true }],
 	"泽德南二街": [{ "name": "泽德", "all": true }],
@@ -133,7 +134,7 @@
 	"惠德北": [{ "name": "积德", "all": true }],
 	"积德花": [{ "name": "积德", "all": true }],
 	"鹅掌坦解放街": [{ "name": "鹅掌坦", "all": true }],
-	"田心村友谊": [{ "name": "田心", "all": true }],
+	"田心村": [{ "name": "田心", "all": true }],
 	"田心友谊路": [{ "name": "田心", "all": true }],
 	"田心水闸东街": [{ "name": "田心", "all": true }],
 	"子嘉街": [{ "name": "同康", "all": true }],
@@ -227,9 +228,8 @@
 	],
 	"同嘉路": [
 		{ "name": "金德", "all": false, "start": 1, "end": 47, "oddity": 1 },
-		{ "name": "", "all": false, "start": 223, "end": 223, "oddity": 1 },
 		{ "name": "明德", "all": false, "start": 49, "end": 377, "oddity": 1 },
-		{ "name": "岭南", "all": false, "start": 10, "end": 12, "oddity": 0 }
+		{ "name": "岭南", "all": false, "start": 10, "end": 34, "oddity": 0 }
 	],
 	"上埗大街": [{ "name": "上步", "all": true }],
 	"上步大街": [{ "name": "上步", "all": true }],
@@ -250,7 +250,7 @@
 		{ "name": "", "all": false, "start": 53, "end": 53, "oddity": 1 },
 		{ "name": "鹅掌坦", "all": false, "start": 13, "end": 129, "oddity": 1 },
 		{ "name": "荔德", "all": false, "start": 98, "end": 248, "oddity": 0 },
-		{ "name": "恒丰", "all": false, "start": 221, "end": 221, "oddity": 1 },
+		{ "name": "恒丰", "all": false, "start": 221, "end": 227, "oddity": 1 },
 		{ "name": "侨德", "all": false, "start": 250, "end": 340, "oddity": 0 },
 		{ "name": "金德", "all": false, "start": 257, "end": 335, "oddity": 1 },
 		{ "name": "岭南", "all": false, "start": 377, "end": 471, "oddity": 1 },
