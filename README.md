@@ -2,40 +2,33 @@
 
 自动化分居委是一个用 JavaScript 写的简易小工具，目的在于将给定的某街道辖区内的任一地址对应到其所属社区（aka 居委）。
 
-## 如何使用
+## 原理
+脚本会读取一个.xlsx，按你指定的“地址列”匹配居委并把结果写回表格。
 
-### 安装 Node 和 Node 包
+## 具体怎么操作
 
-安装 [Node.js v11.9.0+](https://nodejs.org/en/download).
+### 安装依赖
 
-克隆这个仓库到你的电脑:
-
+1. 安装 [Node.js v11.9.0+](https://nodejs.org/en/download).
+2. 克隆本仓库并跑 `npm install` 安装依赖:
 ```bash
 git clone https://github.com/dev-chenxing/neighborhood-locator.git
-```
-
-cd 到克隆目录下面后，使用 npm 安装所需的包:
-
-```powershell
 cd neighborhood-locator
 npm install
 ```
 
 ### 运行脚本
 
-#### 手動操作
-
-在命令行运行 JavaScript 脚本:
+在仓库根目录用命令行运行以下命令：
 
 ```bash
-node ./neighborhood_locator.js "./xx企业底册名单.xlsx" 住所 所在居委 --log-level ERROR --create-copy true --delete-unknown false
+node ./neighborhood_locator.js "D:\path\to\你的名单.xlsx" "经营场所" "所在居委" --log-level ERROR
 ```
 
-这里，`<input.xlsx>`是输入地址所在的 Excel 表文件名。
-
-当前 JavaScript 版仅支持 `.xlsx` 文件，不再支持 `.xls`。
-
-脚本运行完毕时，命令行会输出地址和所属居委的列表，同时输入的 Excel 表也会更新所属居委列表。
+说明：
+- 第一个参数：输入文件路径（仅支持.xlsx文件）。
+- 第二个参数：地址列名，如“经营场所”。
+- 第三个参数：输出列名，如“所在居委”（脚本会把匹配结果填到该列）。
 
 ### 作为模块使用
 

@@ -20,13 +20,13 @@ const args = yargs(hideBin(process.argv))
     alias: "c",
     describe: "Specify whether to create a copy or not",
     type: "boolean",
-    default: false,
+    default: true,
   })
   .option("delete-unknown", {
     alias: "d",
     describe: "Specify whether to delete unknown address or not",
     type: "boolean",
-    default: true,
+    default: false,
   })
   .option("log-level", {
     alias: "l",
