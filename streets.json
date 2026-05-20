@@ -15,7 +15,7 @@
   "鹅掌坦后街五巷": [{ "name": "同康", "all": true }],
   "鹅掌坦后街七巷": [{ "name": "同康", "all": true }],
   "鹅掌坦后街": [
-    { "name": "鹅掌坦", "all": false, "start": 2, "end": 10, "oddity": 0 },
+    { "name": "鹅掌坦", "all": false, "oddity": 0 },
     { "name": "同康", "all": true }
   ],
   "鹅掌坦村": [{ "name": "鹅掌坦", "all": true }],
