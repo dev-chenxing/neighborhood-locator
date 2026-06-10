@@ -22,12 +22,12 @@ npm install
 在仓库根目录用命令行运行以下命令：
 
 ```bash
-node ./neighborhood_locator.js "D:\path\to\你的名单.xlsx" "经营场所" "所在居委" --log-level ERROR
+node ./neighborhood_locator.js "\path\to\你的名单.xlsx" "地址" "所在居委" --log-level ERROR
 ```
 
 说明：
 - 第一个参数：输入文件路径（仅支持.xlsx文件）。
-- 第二个参数：地址列名，如“经营场所”。
+- 第二个参数：地址列名，如“地址”。
 - 第三个参数：输出列名，如“所在居委”（脚本会把匹配结果填到该列）。
 
 ### 作为模块使用
