@@ -87,7 +87,10 @@
   "上步潭底商贸广场": [{ "name": "上步", "all": true }],
   "上步大楼": [{ "name": "上步", "all": true }],
   "上步商业街": [{ "name": "上步", "all": true }],
-  "荔德路": [{ "name": "荔德", "all": true }],
+  "荔德路": [
+    { "name": "越秀区", "all": false, "start": 318, "end": 318 },
+    { "name": "荔德", "all": true }
+  ],
   "同新街": [{ "name": "荔德", "all": true }],
   "同祥街": [{ "name": "荔德", "all": true }],
   "同逸苑": [{ "name": "荔德", "all": true }],
