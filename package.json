@@ -1,6 +1,6 @@
 {
   "name": "neighborhood-locator",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "description": "A simple script that helps finding its neighborhood given a street address and street data",
   "main": "./index.js",
   "types": "./index.d.ts",
@@ -17,7 +17,9 @@
     },
     "./streets.json": "./streets.json"
   },
-  "scripts": {},
+  "scripts": {
+    "test": "node test.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dev-chenxing/neighborhood-locator.git"
