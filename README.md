@@ -42,9 +42,8 @@ const 社区 = 匹配所属社区("xx路129号");
 
 #### Shell Script 全自動 (不推荐)
 
-`neighborhood-locator`腳本是針對某特定格式的辦公表格而寫的全自動腳本，只需一行命令即可完成 99%分居委的工作,但需要安裝`Shell`, 如：[Git Bash](https://git-scm.com/downloads)
+`分居委` 腳本是針對某特定格式的辦公表格而寫的全自動腳本，只需一行命令即可完成 99%分居委的工作，但需要安裝`Shell`, 如：[Git Bash](https://git-scm.com/downloads)
 
 ```bash
-chmod +x ./neighborhood-locator
-./neighborhood-locator 2024年5月区新开办企业情况清单.xlsx <區> <街道>
+./分居委 2024年5月区新开办企业情况清单.xlsx <區> <街道>
 ```

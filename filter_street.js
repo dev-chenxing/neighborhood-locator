@@ -1,3 +1,4 @@
+const path = require("path");
 const {
   createWorkbook,
   getWorksheetByIndex,
@@ -7,11 +8,20 @@ const {
   writeObjectsToWorksheet,
 } = require("./excel");
 
+function detectHeaderRow(worksheet) {
+  const header_fields = [""];
+}
+
 async function main() {
   const excel_file = process.argv[2];
   const district = process.argv[3];
   const filter_street = process.argv[4];
-  const new_excel_file = excel_file.replace(district, filter_street);
+
+  // 拆分路径，仅修改文件名部分
+  const file_dir = path.dirname(excel_file);
+  const file_basename = path.basename(excel_file, path.extname(excel_file));
+  const new_basename = file_basename.replace(district, filter_street);
+  const new_excel_file = path.join(file_dir, `${new_basename}.xlsx`);
 
   const workbook = await loadWorkbook(excel_file);
   const worksheet = getWorksheetByIndex(workbook, 0);

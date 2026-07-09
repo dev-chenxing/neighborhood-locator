@@ -1,0 +1,69 @@
+#!/usr/bin/bash
+
+set -e
+
+DIR_MODE=0
+FILE=""
+DISTRICT=""
+FILTER_STREET=""
+args=()
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        -D)
+            DIR_MODE=1
+            shift
+            ;;
+        *)
+            args+=("$1")
+            shift
+            ;;
+    esac
+done
+
+if [[ ${#args[@]} -ne 3 ]]; then
+    echo "❌ 参数缺失！"
+    echo "用法: $0 [-D] <文件或目录> <区> <街道>"
+    exit 1
+fi
+
+FILE="${args[0]}"
+DISTRICT="${args[1]}"
+FILTER_STREET="${args[2]}"
+
+process_file() {
+    local excel_path="$1"
+    # 过滤街道
+    local filtered_excel=$(node ./filter_street.js "$excel_path" "$DISTRICT" "$FILTER_STREET" -o)
+    # 匹配居委写入表格
+    node ./neighborhood_locator.js "$filtered_excel" 住所 所属居委
+}
+
+if [[ $DIR_MODE -eq 1 ]]; then
+    if [[ ! -d "$FILE" ]]; then
+        echo "❌ 路径 '$FILE' 不是一个有效的目录！"
+        exit 1
+    fi
+
+    excel_files=("$FILE"/*.xlsx)
+    # 检查是否有匹配的文件
+    if [[ ${#excel_files[@]} -eq 0 || ! -f "${excel_files[0]}" ]]; then
+        echo "❌ 目录 '$FILE' 中没有找到任何 .xlsx 文件！"
+        exit 0
+    fi
+
+    for excel_file in "${excel_files[@]}"; do
+        # 跳过Office临时文件
+        filename=$(basename "$excel_file")
+        if [[ "$filename" == .~$* ]]; then
+            continue
+        fi
+        process_file "$excel_file"
+    done
+else
+    if [[ ! -f "$FILE" ]]; then
+        echo "❌ 文件 '$FILE' 不存在！"
+        exit 1
+    fi
+    process_file "$FILE"
+fi
