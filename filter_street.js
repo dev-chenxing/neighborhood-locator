@@ -38,7 +38,7 @@ function detectHeaderRow(worksheet) {
     // 统计命中的表头字段数量
     cellValues.forEach((cellValue, colIndex) => {
       if (!cellValue) return; // 跳过空单元格
-      console.log(`检查表头行 ${rowNum} 列 ${colIndex}: ${cellValue}`);
+      console.log(`Row ${rowNum}, Col ${colIndex}: ${cellValue}`);
 
       // 检查是否是镇街字段
       if (镇街字段.includes(cellValue)) {
@@ -74,30 +74,44 @@ async function main() {
   const newExcelFile = path.join(fileDir, `${newBasename}.xlsx`);
 
   // 加载原工作簿
-  const workbook = await loadWorkbook(excelFile);
-  const worksheet = getWorksheetByIndex(workbook, 0);
-
-  // 检测表头行
-  const { rowNum: headerRowNum, streetColIndex } = detectHeaderRow(worksheet);
-  if (streetColIndex === -1) {
-    throw new Error(`${excelFile} 未找到镇街字段列，请检查表头`);
-  }
-  if (headerRowNum === -1) {
-    throw new Error(`${excelFile} 未找到表头行，请检查表头`);
+  let workbook;
+  try {
+    workbook = await loadWorkbook(excelFile);
+  } catch (error) {
+    throw new Error(`无法加载Excel文件 ${excelFile}: ${error.message}`);
   }
 
-  // 倒序删除不符合镇街条件的行
-  for (let rowNum = worksheet.rowCount; rowNum > headerRowNum; rowNum--) {
-    const row = worksheet.getRow(rowNum);
-    const 镇街列值 = String(row.getCell(streetColIndex).value || "").trim();
-    // 不匹配的行删除
-    if (!镇街列值.includes(filterStreet)) {
-      worksheet.spliceRows(rowNum, 1);
+  let successfulSheets = 0; // 成功处理的工作表计数
+  for (const sheet of workbook.worksheets) {
+    // 检测表头行
+    const { rowNum: headerRowNum, streetColIndex } = detectHeaderRow(sheet);
+    if (streetColIndex === -1) {
+      continue; // 未找到镇街列，跳过当前工作表
     }
+    if (headerRowNum === -1) {
+      continue; // 未找到表头行，跳过当前工作表
+    }
+
+    // 倒序删除不符合镇街条件的行
+    for (let rowNum = sheet.rowCount; rowNum > headerRowNum; rowNum--) {
+      const row = sheet.getRow(rowNum);
+      const 镇街列值 = String(row.getCell(streetColIndex).value || "").trim();
+      // 不匹配的行删除
+      if (!镇街列值.includes(filterStreet)) {
+        sheet.spliceRows(rowNum, 1);
+      }
+    }
+    successfulSheets++; // 成功处理的工作表计数加1
   }
 
-  // 保存为新文件
-  await saveWorkbook(workbook, newExcelFile);
+  // 全文件无有效表头时给出提示，不保存新文件
+  if (successfulSheets === 0) {
+    return console.warn(`⚠️ ${excelFile} 全部工作表无有效表头，未生成新文件`);
+  } else {
+    // 保存为新文件
+    await saveWorkbook(workbook, newExcelFile);
+    console.log(`✅ 已生成新文件: ${newExcelFile}`);
+  }
 
   // 输出新文件路径供后续脚本使用
   if (process.argv[5] === "-o") console.log(newExcelFile);
