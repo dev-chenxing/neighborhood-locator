@@ -1,14 +1,14 @@
-const richConsle = require("rich-console");
-const yargs = require("yargs");
-const { hideBin } = require("yargs/helpers");
-const {
+import { styleText } from "node:util";
+import yargs from "yargs";
+import { hideBin } from "yargs/helpers";
+import {
   detectHeaderRow,
   getWorksheetByIndex,
   loadWorkbook,
   saveWorkbook,
   居委列名,
-} = require("./excel");
-const { 匹配所属社区 } = require("./resolver");
+} from "./excel";
+import { 匹配所属社区 } from "./resolver";
 
 const args = yargs(hideBin(process.argv))
   .usage("用法: $0 <企业名单.xlsx> [地址列名] [居委列名] [选项]")
@@ -43,11 +43,15 @@ const args = yargs(hideBin(process.argv))
 const logNeighborhoodResult = (address, neighborhoodName, logLevel) => {
   if (neighborhoodName) {
     if (logLevel == "INFO")
-      richConsle.log(
-        `<blue>${neighborhoodName}</blue> <green>${address}</green>`,
+      console.log(
+        styleText("blue", `${neighborhoodName}`) +
+          " " +
+          styleText("green", `${address}`),
       );
   } else {
-    richConsle.log(`<red>未知</red> <green>${address}</green>`);
+    console.log(
+      styleText("red", "未知") + " " + styleText("green", `${address}`),
+    );
   }
 };
 
@@ -75,14 +79,23 @@ async function main() {
 
   for (let sheetIndex = 0; sheetIndex < sheets.length; sheetIndex++) {
     const sheet = sheets[sheetIndex];
-    richConsle.log(
-      `正在处理工作表<cyan>${sheetIndex}</cyan>：<cyan>${sheet.name}</cyan>（${sheet.rowCount}行，${sheet.columnCount}列）`,
+    console.log(
+      "正在处理工作表" +
+        styleText("cyan", `${sheetIndex}`) +
+        "：" +
+        styleText("cyan", `${sheet.name}`) +
+        `（${sheet.rowCount}行，${sheet.columnCount}列）`,
     );
     // 获取表头行和镇街列索引
     const { headerRowNum, streetColIndex, addressColIndex } =
       detectHeaderRow(sheet);
-    richConsle.log(
-      `表头行号：<cyan>${headerRowNum}</cyan>，镇街列索引：<cyan>${streetColIndex}</cyan>，地址列索引：<cyan>${addressColIndex}</cyan>`,
+    console.log(
+      `表头行号：` +
+        styleText("cyan", `${headerRowNum}`) +
+        `，镇街列索引：` +
+        styleText("cyan", `${streetColIndex}`) +
+        `，地址列索引：` +
+        styleText("cyan", `${addressColIndex}`),
     );
 
     if (
@@ -124,13 +137,17 @@ async function main() {
     }
   }
 
-  richConsle.log(`
-  已分居委<cyan>${totalFinished}</cyan>条，共<cyan>${totalCount}</cyan>条，完成率<cyan>${(totalCount ===
-  0
-    ? 0
-    : (totalFinished / totalCount) * 100
-  ).toFixed(2)}%</cyan>
-  `);
+  console.log(
+    "\n已分居委" +
+      styleText("cyan", `${totalFinished}`) +
+      "条，共" +
+      styleText("cyan", `${totalCount}`) +
+      "条，完成率" +
+      styleText(
+        "cyan",
+        `${totalCount === 0 ? 0 : ((totalFinished / totalCount) * 100).toFixed(2)}%`,
+      ),
+  );
 
   if (createCopy) {
     const newExcelFile = excel_file.replace(/\.xlsx$/i, " - 副本.xlsx");
