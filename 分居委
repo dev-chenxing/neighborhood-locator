@@ -35,6 +35,7 @@ process_file() {
     local excel_path="$1"
     # 过滤街道
     local filtered_excel=$(node ./filter_street.js "$excel_path" "$DISTRICT" "$FILTER_STREET" -o)
+    echo "✅ 已过滤街道，输出文件: $filtered_excel"
     # 匹配居委写入表格
     # node ./neighborhood_locator.js "$filtered_excel" 住所 所属居委
 }

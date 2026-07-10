@@ -38,7 +38,6 @@ function detectHeaderRow(worksheet) {
     // 统计命中的表头字段数量
     cellValues.forEach((cellValue, colIndex) => {
       if (!cellValue) return; // 跳过空单元格
-      console.log(`Row ${rowNum}, Col ${colIndex}: ${cellValue}`);
 
       // 检查是否是镇街字段
       if (镇街字段.includes(cellValue)) {
@@ -106,15 +105,14 @@ async function main() {
 
   // 全文件无有效表头时给出提示，不保存新文件
   if (successfulSheets === 0) {
-    return console.warn(`⚠️ ${excelFile} 全部工作表无有效表头，未生成新文件`);
+    console.warn(`⚠️ ${excelFile} 全部工作表无有效表头，未生成新文件`);
+    return;
   } else {
     // 保存为新文件
     await saveWorkbook(workbook, newExcelFile);
-    console.log(`✅ 已生成新文件: ${newExcelFile}`);
+    // 输出新文件路径供后续脚本使用
+    if (process.argv[5] === "-o") console.log(newExcelFile);
   }
-
-  // 输出新文件路径供后续脚本使用
-  if (process.argv[5] === "-o") console.log(newExcelFile);
 }
 
 main().catch((error) => {
