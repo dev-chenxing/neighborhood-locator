@@ -187,6 +187,12 @@
   "石槎路": [
     { "name": "紫竹", "all": false, "start": 28, "end": 38, "oddity": 0 }
   ],
+  "徳康路": [
+    { "name": "紫竹", "all": false, "start": 10, "end": 12, "oddity": 0 },
+    { "name": "紫竹", "all": false, "start": 13, "end": 15, "oddity": 1 },
+    { "name": "紫竹", "all": false, "start": 170, "end": 182, "oddity": 0 },
+    { "name": "棠景街", "all": true }
+  ],
   "德康路": [
     { "name": "紫竹", "all": false, "start": 10, "end": 12, "oddity": 0 },
     { "name": "紫竹", "all": false, "start": 13, "end": 15, "oddity": 1 },
