@@ -12,7 +12,7 @@
     <input
       type="text"
       id="addrInput"
-      placeholder="输入地址，例如：同德街鹅掌坦"
+      placeholder="输入地址，例如：西槎路31号"
       class="w-full border px-3 py-2 rounded"
       bind:value={input}
     />
