@@ -9,11 +9,15 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^7.0.7"
+    "@astrojs/check": "^0.9.9",
+    "@astrojs/svelte": "^9.0.1",
+    "astro": "^7.0.7",
+    "svelte": "^5.56.4"
   },
   "devDependencies": {
     "@unocss/astro": "^66.7.5",
     "@unocss/reset": "^66.7.5",
+    "typescript": "^6.0.0",
     "unocss": "^66.7.5"
   },
   "engines": {

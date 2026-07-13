@@ -1,16 +1,20 @@
 ---
-
+import NeighborhoodLocator from "../components/NeighborhoodLocator.svelte";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>同德地址查居委</title>
-	</head>
-	<body>
-		<h1>同德地址查居委</h1>
-	</body>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>同德地址查居委</title>
+  </head>
+  <body>
+    <div class="container mx-auto mt-20 px-4 max-w-4xl">
+      <h1 class="text-xl font-bold mb-6">地址匹配居委查询</h1>
+
+      <NeighborhoodLocator client:load />
+    </div>
+  </body>
 </html>
