@@ -184,9 +184,7 @@
   ],
   "田心大路": [{ "name": "田心", "all": true }],
   "增宝街": [{ "name": "田心", "all": true }],
-  "石槎路": [
-    { "name": "紫竹", "all": false, "start": 28, "end": 38, "oddity": 0 }
-  ],
+  "石槎路": [{ "name": "紫竹", "all": false, "start": 28, "end": 38, "oddity": 0 }],
   "徳康路": [
     { "name": "紫竹", "all": false, "start": 10, "end": 12, "oddity": 0 },
     { "name": "紫竹", "all": false, "start": 13, "end": 15, "oddity": 1 },

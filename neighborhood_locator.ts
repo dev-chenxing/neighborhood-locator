@@ -10,6 +10,8 @@ import {
 } from "./excel";
 import { 匹配所属社区 } from "./resolver";
 
+type LogLevel = "INFO" | "ERROR";
+
 const args = yargs(hideBin(process.argv))
   .usage("用法: $0 <企业名单.xlsx> [地址列名] [居委列名] [选项]")
   .demandCommand(1, "缺少必填参数：请输入Excel文件路径")
@@ -38,27 +40,30 @@ const args = yargs(hideBin(process.argv))
     default: -1,
   })
   .help()
-  .parse();
+  .parseSync();
 
-const logNeighborhoodResult = (address, neighborhoodName, logLevel) => {
+const logNeighborhoodResult = (
+  address: string,
+  neighborhoodName: string | undefined,
+  logLevel: LogLevel,
+) => {
   if (neighborhoodName) {
     if (logLevel == "INFO")
       console.log(
-        styleText("blue", `${neighborhoodName}`) +
-          " " +
-          styleText("green", `${address}`),
+        styleText("blue", `${neighborhoodName}`) + " " + styleText("green", `${address}`),
       );
   } else {
-    console.log(
-      styleText("red", "未知") + " " + styleText("green", `${address}`),
-    );
+    console.log(styleText("red", "未知") + " " + styleText("green", `${address}`));
   }
 };
 
 async function main() {
   const [excel_file] = args._;
+  if (excel_file === undefined || typeof excel_file !== "string") {
+    throw new Error("缺少必填参数：请输入Excel文件路径");
+  }
+
   const { logLevel, sheetIndex, createCopy, deleteUnknown } = args;
-  void logLevel;
 
   const workbook = await loadWorkbook(excel_file);
 
@@ -79,6 +84,9 @@ async function main() {
 
   for (let sheetIndex = 0; sheetIndex < sheets.length; sheetIndex++) {
     const sheet = sheets[sheetIndex];
+    if (sheet === undefined) {
+      throw new Error(`工作表索引 ${sheetIndex} 不存在`);
+    }
     console.log(
       "正在处理工作表" +
         styleText("cyan", `${sheetIndex}`) +
@@ -87,8 +95,7 @@ async function main() {
         `（${sheet.rowCount}行，${sheet.columnCount}列）`,
     );
     // 获取表头行和镇街列索引
-    const { headerRowNum, streetColIndex, addressColIndex } =
-      detectHeaderRow(sheet);
+    const { headerRowNum, streetColIndex, addressColIndex } = detectHeaderRow(sheet);
     console.log(
       `表头行号：` +
         styleText("cyan", `${headerRowNum}`) +
@@ -98,11 +105,7 @@ async function main() {
         styleText("cyan", `${addressColIndex}`),
     );
 
-    if (
-      headerRowNum === -1 ||
-      streetColIndex === -1 ||
-      addressColIndex === -1
-    ) {
+    if (headerRowNum === -1 || streetColIndex === -1 || addressColIndex === -1) {
       continue; // 未找到表头行或镇街列，跳过当前工作表
     }
 
@@ -114,10 +117,11 @@ async function main() {
     // 遍历数据行，匹配所属社区，并将结果写入居委列
     for (let rowNum = headerRowNum + 1; rowNum <= sheet.rowCount; rowNum++) {
       const row = sheet.getRow(rowNum);
-      const address = row.getCell(addressColIndex).value;
+      const address = String(row.getCell(addressColIndex).value).trim();
       const neighborhood = address ? 匹配所属社区(address) : "";
 
-      logNeighborhoodResult(address, neighborhood, logLevel);
+      logNeighborhoodResult(address, neighborhood, logLevel !== "ERROR" ? "INFO" : "ERROR");
+
       if (neighborhood) totalFinished++;
       totalCount++;
 

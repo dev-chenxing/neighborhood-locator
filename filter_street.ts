@@ -1,10 +1,15 @@
-const path = require("path");
-const { detectHeaderRow, loadWorkbook, saveWorkbook } = require("./excel");
+import path from "node:path";
+import { detectHeaderRow, loadWorkbook, saveWorkbook } from "./excel";
 
 async function main() {
   const excelFile = process.argv[2];
   const district = process.argv[3];
   const filterStreet = process.argv[4];
+
+  if (!excelFile || !district || !filterStreet) {
+    console.error("用法: node filter_street.js <企业名单.xlsx> <区县> <镇街>");
+    process.exit(1);
+  }
 
   // 拆分路径，仅修改文件名部分
   const fileDir = path.dirname(excelFile);
@@ -16,8 +21,10 @@ async function main() {
   let workbook;
   try {
     workbook = await loadWorkbook(excelFile);
-  } catch (error) {
-    throw new Error(`无法加载Excel文件 ${excelFile}: ${error.message}`);
+  } catch (error: Error | unknown) {
+    throw new Error(
+      `无法加载Excel文件 ${excelFile}: ${error instanceof Error ? error.message : String(error)}`,
+    );
   }
 
   let successfulSheets = 0; // 成功处理的工作表计数

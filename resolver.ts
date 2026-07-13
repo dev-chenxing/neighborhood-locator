@@ -35,7 +35,8 @@ export function getAddressNumber(street: string, address: string): number {
 
 export function 匹配所属社区(address: string): string | undefined {
   for (const street in 街道映射) {
-    const neighborhoods = 街道映射[street];
+    const neighborhoods = (街道映射 as 街道号数映射)[street];
+    if (!neighborhoods) continue;
     if (!address.includes(street)) continue;
 
     for (const neighborhood of neighborhoods) {
@@ -48,11 +49,8 @@ export function 匹配所属社区(address: string): string | undefined {
         continue;
       }
 
-      if (neighborhood["start"]) {
-        if (
-          neighborhood["start"] <= addressNumber &&
-          addressNumber <= neighborhood["end"]
-        ) {
+      if (neighborhood["start"] && neighborhood["end"]) {
+        if (neighborhood["start"] <= addressNumber && addressNumber <= neighborhood["end"]) {
           return neighborhood["name"];
         }
         continue;

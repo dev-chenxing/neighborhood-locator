@@ -1,9 +1,8 @@
-const path = require("path");
-const ExcelJS = require("exceljs");
+import path from "node:path";
+import ExcelJS from "exceljs";
 
 const 镇街字段 = ["所属镇街", "所属街道", "行政区划", "街道", "镇街", "所属街"];
 const 地址列 = ["注册地址", "经营场所", "机构地址", "场所地址", "住所"];
-const 居委列名 = "所属社区";
 
 // 表头字段，命中2个及以上则认为是表头行
 const 其他表头字段 = [
@@ -21,17 +20,15 @@ const 其他表头字段 = [
   "电话号码",
 ];
 
-function createWorkbook() {
-  return new ExcelJS.Workbook();
-}
+export const 居委列名 = "所属社区";
 
-function assertXlsxPath(filePath) {
+function assertXlsxPath(filePath: string) {
   if (path.extname(filePath).toLowerCase() !== ".xlsx") {
     throw new Error(`Only .xlsx files are supported: ${filePath}`);
   }
 }
 
-function getWorksheetByIndex(workbook, sheetIndex = 0) {
+export function getWorksheetByIndex(workbook: ExcelJS.Workbook, sheetIndex = 0) {
   const worksheet = workbook.worksheets[sheetIndex];
   if (!worksheet) {
     throw new Error(`Sheet index out of range: ${sheetIndex}`);
@@ -39,84 +36,20 @@ function getWorksheetByIndex(workbook, sheetIndex = 0) {
   return worksheet;
 }
 
-function worksheetToObjects(worksheet) {
-  const headerRow = worksheet.getRow(1);
-  const headers = headerRow.values
-    .slice(1)
-    .map((value) => (value == null ? "" : String(value).trim()));
-
-  const rows = [];
-  for (let rowNumber = 2; rowNumber <= worksheet.rowCount; rowNumber += 1) {
-    const row = worksheet.getRow(rowNumber);
-    const record = {};
-    let hasValue = false;
-
-    headers.forEach((header, index) => {
-      if (!header) return;
-      const cellValue = row.getCell(index + 1).value;
-      const normalized =
-        cellValue == null
-          ? ""
-          : typeof cellValue === "object" &&
-              cellValue !== null &&
-              "text" in cellValue
-            ? String(cellValue.text)
-            : String(cellValue);
-
-      record[header] = normalized;
-      if (normalized !== "") hasValue = true;
-    });
-
-    if (hasValue) rows.push(record);
-  }
-
-  return { headers, rows };
-}
-
-function worksheetToMatrix(worksheet) {
-  const rows = [];
-  worksheet.eachRow({ includeEmpty: true }, (row) => {
-    rows.push(
-      row.values.slice(1).map((value) => {
-        if (value == null) return "";
-        if (typeof value === "object" && value !== null && "text" in value) {
-          return String(value.text);
-        }
-        return String(value);
-      }),
-    );
-  });
-  return rows;
-}
-
-function writeObjectsToWorksheet(worksheet, headers, rows) {
-  worksheet.spliceRows(1, worksheet.rowCount || 1);
-  worksheet.addRow(headers);
-  for (const row of rows) {
-    worksheet.addRow(headers.map((header) => row[header] ?? ""));
-  }
-}
-
-function writeMatrixToWorksheet(worksheet, rows) {
-  for (const row of rows) {
-    worksheet.addRow(row);
-  }
-}
-
-async function loadWorkbook(filePath) {
+export async function loadWorkbook(filePath: string) {
   assertXlsxPath(filePath);
-  const workbook = createWorkbook();
+  const workbook = new ExcelJS.Workbook();
   await workbook.xlsx.readFile(filePath);
   return workbook;
 }
 
-async function saveWorkbook(workbook, filePath) {
+export async function saveWorkbook(workbook: ExcelJS.Workbook, filePath: string) {
   assertXlsxPath(filePath);
   await workbook.xlsx.writeFile(filePath);
 }
 
-function findMatch(text, fields) {
-  let bestMatch = null;
+function findMatch(text: string, fields: string[]) {
+  let bestMatch: string | null = null;
   for (const field of fields) {
     if (text.includes(field)) {
       if (!bestMatch || field.length > bestMatch.length) {
@@ -127,11 +60,11 @@ function findMatch(text, fields) {
   return bestMatch;
 }
 
-function detectHeaderRow(worksheet) {
+export function detectHeaderRow(worksheet: ExcelJS.Worksheet) {
   for (let rowNum = 1; rowNum <= Math.min(3, worksheet.rowCount); rowNum++) {
     const row = worksheet.getRow(rowNum);
     // 获取当前行的所有单元格文本值
-    const cellValues = row.values.map((val) =>
+    const cellValues = (row.values as ExcelJS.CellValue[]).map((val) =>
       val !== undefined ? String(val).trim() : "",
     );
 
@@ -172,20 +105,3 @@ function detectHeaderRow(worksheet) {
   }
   return { headerRowNum: -1, streetColIndex: -1, addressColIndex: -1 }; // 未找到表头行
 }
-
-module.exports = {
-  assertXlsxPath,
-  createWorkbook,
-  getWorksheetByIndex,
-  loadWorkbook,
-  saveWorkbook,
-  worksheetToMatrix,
-  worksheetToObjects,
-  writeMatrixToWorksheet,
-  writeObjectsToWorksheet,
-  镇街字段,
-  地址列,
-  居委列名,
-  其他表头字段,
-  detectHeaderRow,
-};
