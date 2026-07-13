@@ -7,3 +7,8 @@
 - [x] chore: migrate to Bun
 - [x] build: migrate to TypeScript
 - [x] build: add oxfmt and oxlint
+
+## Web
+
+- [ ] chore: add the subdomain `tdjw.chenxing.dev`
+- [ ]

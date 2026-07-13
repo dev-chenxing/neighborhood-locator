@@ -1,26 +1,6 @@
 import path from "node:path";
 import ExcelJS from "exceljs";
-
-const 镇街字段 = ["所属镇街", "所属街道", "行政区划", "街道", "镇街", "所属街"];
-const 地址列 = ["注册地址", "经营场所", "机构地址", "场所地址", "住所"];
-
-// 表头字段，命中2个及以上则认为是表头行
-const 其他表头字段 = [
-  "序号",
-  "企业名称",
-  "单位名称",
-  "经营者名称",
-  "机构名称",
-  "主体名称",
-  "统一社会信用代码",
-  "法定代表人",
-  "法人姓名",
-  "负责人姓名",
-  "法定代表人联系电话",
-  "电话号码",
-];
-
-export const 居委列名 = "所属社区";
+import { 镇街字段, 地址列, 其他表头字段 } from "./config";
 
 function assertXlsxPath(filePath: string) {
   if (path.extname(filePath).toLowerCase() !== ".xlsx") {

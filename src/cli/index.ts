@@ -1,16 +1,10 @@
 import { styleText } from "node:util";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
-import {
-  detectHeaderRow,
-  getWorksheetByIndex,
-  loadWorkbook,
-  saveWorkbook,
-  居委列名,
-} from "./excel";
-import { 匹配所属社区 } from "./resolver";
-
-type LogLevel = "INFO" | "ERROR";
+import { 居委列名 } from "../core/config";
+import { detectHeaderRow, getWorksheetByIndex, loadWorkbook, saveWorkbook } from "../core/excel";
+import { 匹配所属社区 } from "../core/resolver";
+import type { LogLevel } from "../core/types";
 
 const args = yargs(hideBin(process.argv))
   .usage("用法: $0 <企业名单.xlsx> [地址列名] [居委列名] [选项]")

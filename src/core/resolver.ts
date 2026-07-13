@@ -1,14 +1,5 @@
 import 街道映射 from "./streets.json";
-
-type 街道号数映射 = {
-  [street: string]: {
-    name: string;
-    start?: number;
-    end?: number;
-    oddity?: number;
-    all?: boolean;
-  }[];
-};
+import type { 街道号数映射 } from "./types";
 
 export function getAddressNumber(street: string, address: string): number {
   // First try exact: 街道123号

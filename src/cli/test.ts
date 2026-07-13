@@ -1,4 +1,4 @@
-import { 匹配所属社区 } from "./resolver";
+import { 匹配所属社区 } from "../core/resolver";
 
 const 输入地址 = process.argv.slice(2).join(" ");
 

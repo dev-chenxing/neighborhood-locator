@@ -2,37 +2,34 @@
   "name": "neighborhood-locator",
   "version": "4.0.0",
   "private": true,
-  "description": "根据街道地址查找所属社区，适用于广州市白云区同德街",
+  "description": "根据街道地址匹配居委工具",
   "keywords": [
+    "excel",
+    "office-automation",
     "xlsx"
   ],
-  "homepage": "https://github.com/dev-chenxing/neighborhood-locator#readme",
-  "bugs": {
-    "url": "https://github.com/dev-chenxing/neighborhood-locator/issues"
-  },
+  "homepage": "https://tdjw.chenxing.dev",
   "license": "MIT",
   "author": "陈刑",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dev-chenxing/neighborhood-locator.git"
   },
-  "main": "./index.ts",
-  "types": "./index.d.ts",
+  "main": "./src/core/index.ts",
+  "types": "./src/core/types.ts",
   "exports": {
     ".": {
-      "types": "./index.d.ts",
-      "require": "./index.ts",
-      "default": "./index.ts"
+      "types": "./src/core/types.ts",
+      "default": "./src/core/index.ts"
     },
     "./resolver": {
-      "types": "./index.d.ts",
-      "require": "./resolver.ts",
-      "default": "./resolver.ts"
+      "types": "./src/index.d.ts",
+      "default": "./src/resolver.ts"
     },
-    "./streets.json": "./streets.json"
+    "./streets.json": "./src/core/streets.json"
   },
   "scripts": {
-    "test": "bun ./test.ts",
+    "test": "bun ./src/cli/test.ts",
     "lint": "oxlint",
     "format": "oxfmt"
   },
@@ -50,5 +47,9 @@
   },
   "peerDependencies": {
     "typescript": "^7.0.2"
+  },
+  "engines": {
+    "bun": ">=1.3.14",
+    "node": ">=24.12.0"
   }
 }

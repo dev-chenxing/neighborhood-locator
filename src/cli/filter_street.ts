@@ -1,5 +1,5 @@
 import path from "node:path";
-import { detectHeaderRow, loadWorkbook, saveWorkbook } from "./excel";
+import { detectHeaderRow, loadWorkbook, saveWorkbook } from "../core/excel";
 
 async function main() {
   const excelFile = process.argv[2];
