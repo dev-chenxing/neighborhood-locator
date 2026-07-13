@@ -15,33 +15,21 @@
     "type": "git",
     "url": "git+https://github.com/dev-chenxing/neighborhood-locator.git"
   },
-  "main": "./src/core/index.ts",
-  "types": "./src/core/types.ts",
-  "exports": {
-    ".": {
-      "types": "./src/core/types.ts",
-      "default": "./src/core/index.ts"
-    },
-    "./resolver": {
-      "types": "./src/index.d.ts",
-      "default": "./src/resolver.ts"
-    },
-    "./streets.json": "./src/core/streets.json"
-  },
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "type": "module",
+  "module": "./packages/core/index.ts",
   "scripts": {
+    "dev": "bun --cwd apps/web dev",
+    "build": "bun --cwd packages/core build",
     "test": "bun ./src/cli/test.ts",
     "lint": "oxlint",
     "format": "oxfmt"
   },
-  "dependencies": {
-    "exceljs": "^4.4.0",
-    "rich-console": "^0.0.4",
-    "yargs": "^18.0.0"
-  },
   "devDependencies": {
     "@types/bun": "^1.3.14",
-    "@types/node": "^26.1.1",
-    "@types/yargs": "^17.0.35",
     "oxfmt": "^0.58.0",
     "oxlint": "^1.73.0"
   },
