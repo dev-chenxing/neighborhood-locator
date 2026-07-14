@@ -6,7 +6,7 @@
   const output = $derived(input ? 匹配所属社区(input) || "？？？" : "？？？");
 </script>
 
-<div class="grid grid-cols-[auto_1fr] w-fit border border-black my-4 w-full">
+<div class="grid grid-cols-[auto_1fr] w-fit border border-black mt-4 w-full">
   <div class="border-r border-black px-2">
     <label for="addrInput" class="font-bold whitespace-nowrap">地址</label>
   </div>
