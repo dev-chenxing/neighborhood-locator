@@ -2,8 +2,8 @@
 import Github from "./Github.astro";
 ---
 
-<nav class="pt-12">
-  <div class="flex justify-end px-20 mb-2">
+<nav class="pt-8 md:pt-12">
+  <div class="flex justify-end px-8 mb-0.5 md:mb-2">
     <a
       href={Astro.props.githubUrl}
       class="text-black hover:text-red-500"
@@ -17,13 +17,13 @@ import Github from "./Github.astro";
 
   <div class="mx-auto flex justify-center">
     <h1
-      class="scale-x-[0.8] tracking-[-0.075em] text-5xl text-red-500 mb-2 font-xiaobiaosong"
+      class="scale-x-[0.85] md:scale-x-[0.8] tracking-[-0.085em] md:tracking-[-0.075em] text-[1.65rem] md:text-5xl text-red-500 md-1 md:mb-2 font-xiaobiaosong text-center"
     >
       广州市白云区同德街地址查询所属社区
     </h1>
   </div>
-  <div class="px-16">
-    <div class="border-b-4 border-red-500 mx-auto container mb-0.5"></div>
-    <div class="border-b-2 border-red-500 mx-auto container"></div>
+  <div class="px-8 md:px-16">
+    <div class="border-b-3 md:border-b-4 border-red-500 mx-auto container mb-0.5"></div>
+    <div class="border-b-1 md:border-b-2 border-red-500 mx-auto container"></div>
   </div>
 </nav>
