@@ -6,8 +6,12 @@
     <meta name="generator" content={Astro.generator} />
     <title>{Astro.props.title}</title>
   </head>
-  <body class="font-fangsong py-8 px-12 bg-slate-50 h-screen">
-    <div class="bg-white shadow-2xl border border-slate-100 h-full">
+  <body
+    class="font-fangsong text-[1.375rem]/8 tracking-wider bg-slate-50 min-h-screen container mx-auto flex items-center justify-center"
+  >
+    <div
+      class="relative bg-white shadow-2xl border border-slate-100 max-h-full min-h-[calc(100vh-4rem)] max-w-3xl"
+    >
       <slot />
     </div>
   </body>
