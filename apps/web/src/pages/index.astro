@@ -1,20 +1,24 @@
 ---
+import Layout from "../layouts/Layout.astro";
+import NavHeader from "../components/NavHeader.astro";
 import NeighborhoodLocator from "../components/NeighborhoodLocator.svelte";
 ---
 
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>同德地址查居委</title>
-  </head>
-  <body>
-    <div class="container mx-auto mt-20 px-4 max-w-4xl">
-      <h1 class="text-xl font-bold mb-6">地址匹配居委查询</h1>
-
-      <NeighborhoodLocator client:load />
-    </div>
-  </body>
-</html>
+<Layout title="同德地址查居委">
+  <NavHeader />
+  <div
+    class="container mx-auto px-28 flex flex-col text-[1.75rem]/[2.75rem] tracking-wide"
+  >
+    <h2 class="text-4xl/8 self-center mt-20 mb-16 font-xiaobiaosong">
+      广州市白云区同德街地址匹配居委查询（试行）
+    </h2>
+    <p>各网友：</p>
+    <p class="indent-[2em]">
+      本站通过人工收集整理了广州市白云区同德街部分地址与居委会的匹配数据，供网友查询使用。
+    </p>
+    <NeighborhoodLocator client:load />
+    <p class="indent-[2em]">
+      本站非官方，不保证数据的完整性和准确性，如有错误或遗漏，请联系本站管理员进行纠正。
+    </p>
+  </div>
+</Layout>

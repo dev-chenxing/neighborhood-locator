@@ -1,19 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="同德">
   <!-- hard-edged shadow -->
-  <rect x="4" y="4" width="60" height="60" fill="#000000"/>
+  <rect x="2" y="2" width="58" height="58" fill="#000000"/>
   <!-- mustard square with black border -->
-  <rect x="2" y="2" width="56" height="56" fill="#FFFFFF" stroke="#000000" stroke-width="4"/>
+  <rect x="2" y="2" width="56" height="56" fill="#FFFFFF" stroke="oklch(63.7% 0.237 25.331)" stroke-width="2"/>
   <!-- Chinese character bottom right -->
   <text
     text-anchor="end"
-    x="54"
+    x="56"
     y="48"
-    fill="#FE87A3"
-    font-family="'Noto Sans CJK SC', 'Microsoft YaHei', 'PingFang SC', sans-serif"
-    font-weight="750"
+    fill="oklch(63.7% 0.237 25.331)"
+    font-family="'方正小标宋_GBK', 'Noto Serif CJK SC', 'SimSun', sans-serif"
     font-size="30"
-    stroke-width="0.2"
-    stroke="#000000"
   >
     德
   </text>
@@ -21,13 +18,10 @@
   <text
     text-anchor="start"
     x="4"
-    y="32"
-    fill="#36DCF8"
-    font-family="'Noto Sans CJK SC', 'Microsoft YaHei', 'PingFang SC', sans-serif"
-    font-weight="750"
+    y="30"
+    fill="oklch(63.7% 0.237 25.331)"
+    font-family="'方正小标宋_GBK', 'Noto Serif CJK SC', 'SimSun', sans-serif"
     font-size="30"
-    stroke-width="0.2"
-    stroke="#000000"
   >
     同
   </text>
