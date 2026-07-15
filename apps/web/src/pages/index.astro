@@ -9,17 +9,17 @@ const githubUrl = "https://github.com/dev-chenxing/neighborhood-locator";
 
 <Layout title="同德地址查居委">
   <NavHeader githubUrl={githubUrl} />
-  <div class="container mx-auto px-12 md:px-20 mb-18 flex flex-col">
-    <h2 class="text-3xl/8 text-center mt-12 mb-2 font-xiaobiaosong">
-      广州市白云区同德街地址匹配居委查询
+  <div class="container mx-auto px-8 md:px-20 mb-8 md:mb-16 flex flex-col">
+    <h2 class="text-[1.35rem]/8 md:text-3xl/8 text-center mt-4 md:mt-12 md:mb-2 font-xiaobiaosong">
+      广州市白云区同德街地址
     </h2>
-    <h3 class="text-3xl/8 text-center mb-8 font-xiaobiaosong">（试行）</h3>
+    <h3 class="text-[1.35rem]/8 md:text-3xl/8 text-center mb-4 md:mb-8 font-xiaobiaosong">匹配居委查询（试行）</h3>
     <p>各网友：</p>
     <p class="indent-[2em]">
       为解答「XX路XX号是哪个居委」这个常见问题，本站自发整理同德街辖区部分地址与社区/居委的对应信息，供网友参考使用。
     </p>
     <NeighborhoodLocator client:load />
-    <p class="mt-2 text-lg">
+    <p class="mt-2 text-sm md:text-lg">
       说明：相关数据由人工整理，非官方数据，无法保证信息完整、准确。如发现信息有误或存在遗漏，请联系本站管理员进行纠正。
     </p>
   </div>

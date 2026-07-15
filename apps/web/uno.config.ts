@@ -12,8 +12,7 @@ export default defineConfig({
     }),
   ],
   shortcuts: {
-    "font-xiaobiaosong":
-      "font-['Times_New_Roman','方正小标宋\\_GBK','Noto_Serif_SC']",
+    "font-xiaobiaosong": "font-['Times_New_Roman','方正小标宋\\_GBK','Noto_Serif_SC']",
     "font-fangsong": "font-['Times_New_Roman','仿宋\\_GB2312','Noto_Serif_SC']",
   },
 });
