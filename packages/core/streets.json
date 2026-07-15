@@ -232,11 +232,13 @@
   ],
   "明德街": [
     { "name": "金德", "all": false, "start": 1, "end": 65, "oddity": 1 },
-    { "name": "明德", "all": false, "start": 12, "end": 54, "oddity": 0 }
+    { "name": "金德", "all": false, "start": 2, "end": 2, "oddity": 0 },
+    { "name": "明德", "all": false, "start": 4, "end": 54, "oddity": 0 }
   ],
   "明德路": [
     { "name": "金德", "all": false, "start": 1, "end": 65, "oddity": 1 },
-    { "name": "明德", "all": false, "start": 12, "end": 54, "oddity": 0 }
+    { "name": "金德", "all": false, "start": 2, "end": 2, "oddity": 0 },
+    { "name": "明德", "all": false, "start": 4, "end": 54, "oddity": 0 }
   ],
   "同康路": [
     { "name": "鹅掌坦", "all": false, "start": 287, "end": 287, "oddity": 1 },
