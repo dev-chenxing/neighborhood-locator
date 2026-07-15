@@ -1,19 +1,30 @@
 ---
-import Footer from "../components/Footer.astro";
 import Layout from "../layouts/Layout.astro";
-import NavHeader from "../components/NavHeader.astro";
 import NeighborhoodLocator from "../components/NeighborhoodLocator.svelte";
+import Github from "../components/Github.astro";
 
 const githubUrl = "https://github.com/dev-chenxing/neighborhood-locator";
+const headerTitle = "广州市白云区同德街地址查询所属社区";
+const author = "某热心市民";
+const buildDate = new Date();
 ---
 
-<Layout title="同德地址查居委">
-  <NavHeader githubUrl={githubUrl} />
+<Layout
+  title="同德地址查居委"
+  headerTitle={headerTitle}
+  githubUrl={githubUrl}
+>
   <div class="container mx-auto px-8 md:px-20 mb-8 md:mb-16 flex flex-col">
-    <h2 class="text-[1.35rem]/8 md:text-3xl/8 text-center mt-4 md:mt-12 md:mb-2 font-xiaobiaosong">
+    <h2
+      class="text-[1.35rem]/8 md:text-3xl/8 text-center mt-4 md:mt-12 md:mb-2 font-xiaobiaosong"
+    >
       广州市白云区同德街地址
     </h2>
-    <h3 class="text-[1.35rem]/8 md:text-3xl/8 text-center mb-4 md:mb-8 font-xiaobiaosong">匹配居委查询（试行）</h3>
+    <h3
+      class="text-[1.35rem]/8 md:text-3xl/8 text-center mb-4 md:mb-8 font-xiaobiaosong"
+    >
+      匹配居委查询（试行）
+    </h3>
     <p>各网友：</p>
     <p class="indent-[2em]">
       为解答「XX路XX号是哪个居委」这个常见问题，本站自发整理同德街辖区部分地址与社区/居委的对应信息，供网友参考使用。
@@ -23,5 +34,31 @@ const githubUrl = "https://github.com/dev-chenxing/neighborhood-locator";
       说明：相关数据由人工整理，非官方数据，无法保证信息完整、准确。如发现信息有误或存在遗漏，请联系本站管理员进行纠正。
     </p>
   </div>
-  <Footer author="某热心市民" githubUrl={githubUrl} />
+  <div class="px-8 md:px-16 mb-4 md:mb-8 flex flex-col items-end">
+    <div class="text-center">
+      <p class="inline-flex items-center">
+        {author}
+        <span class="mx-1">·</span>
+        <a
+          href={githubUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1 hover:text-red-500"
+        >
+          <Github /> GitHub
+        </a>
+      </p>
+      <p>
+        <time datetime={buildDate.toISOString()}>
+          {
+            buildDate.toLocaleDateString("zh-CN", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })
+          }
+        </time>
+      </p>
+    </div>
+  </div>
 </Layout>

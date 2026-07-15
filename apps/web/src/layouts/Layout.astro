@@ -1,19 +1,37 @@
+---
+import Footer from "../components/Footer.astro";
+import NavHeader from "../components/NavHeader.astro";
+
+interface Props {
+  title: string;
+  headerTitle: string;
+  githubUrl: string;
+}
+
+const { title, headerTitle, githubUrl } = Astro.props;
+---
+
 <html lang="zh-CN">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="generator" content={Astro.generator} />
-    <title>{Astro.props.title}</title>
+    <title>{title}</title>
   </head>
   <body
     class="font-fangsong text-[1.17rem]/7 md:text-[1.375rem]/8 tracking-wider bg-slate-50 min-h-[100dvh] antialiased touch-manipulation md:flex md:items-center md:justify-center"
   >
     <div
       class="relative bg-white shadow-2xl border border-slate-100 max-w-3xl w-full
-      min-h-[100dvh] md:min-h-[calc(100vh-4rem)] overflow-x-clip"
+      min-h-[100dvh] md:min-h-[calc(100vh-4rem)] overflow-x-clip flex flex-col"
     >
+      <NavHeader
+        title={headerTitle}
+        githubUrl={githubUrl}
+      />
       <slot />
+      <Footer />
     </div>
   </body>
 </html>

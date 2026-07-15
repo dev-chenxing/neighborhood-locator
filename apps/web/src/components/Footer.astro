@@ -1,43 +1,6 @@
----
-import Github from "../components/Github.astro";
-
-interface Props {
-  author: string; // 落款单位
-  githubUrl: string; // GitHub 仓库地址
-}
-const { author, githubUrl } = Astro.props;
-
-const buildDate = new Date();
----
-
-<div class="flex flex-col items-end px-8 md:px-16">
-  <div class="text-center">
-    <p class="inline-flex items-center">
-      {author}
-      <span class="mx-1">·</span>
-      <a
-        href={githubUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center gap-1 hover:text-red-500"
-      >
-        <Github /> GitHub
-      </a>
-    </p>
-    <p>
-      <time datetime={buildDate.toISOString()}>
-        {
-          buildDate.toLocaleDateString("zh-CN", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-          })
-        }
-      </time>
-    </p>
+<footer class="mt-auto px-8 md:px-16 pb-4">
+  <div>
+    <div class="border-b-2 border-red-500 mx-auto container mb-0.5"></div>
+    <div class="border-b-4 border-red-500 mx-auto container"></div>
   </div>
-</div>
-<div class="absolute left-0 bottom-8 w-full px-8 md:px-16">
-  <div class="border-b-2 border-red-500 mx-auto container mb-0.5"></div>
-  <div class="border-b-4 border-red-500 mx-auto container"></div>
-</div>
+</footer>

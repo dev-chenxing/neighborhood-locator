@@ -1,15 +1,23 @@
 ---
 import Github from "./Github.astro";
+
+interface Props {
+  title: string;
+  githubUrl: string;
+}
+
+const { title, githubUrl } = Astro.props;
 ---
 
 <nav class="pt-6 sm:pt-8 md:pt-12">
   <div class="flex justify-end px-8 mb-0.5 md:mb-2">
     <a
-      href={Astro.props.githubUrl}
+      href={githubUrl}
       class="text-black hover:text-red-500"
       target="_blank"
       rel="noopener noreferrer"
       title="访问网页Github仓库"
+      aria-label="访问网页Github仓库"
     >
       <Github />
     </a>
@@ -22,7 +30,7 @@ import Github from "./Github.astro";
       text-[1.46rem] sm:text-[1.59rem] md:text-5xl 
       text-red-500 mb-1 md:mb-2 font-xiaobiaosong text-center"
     >
-      广州市白云区同德街地址查询所属社区
+      {title}
     </h1>
   </div>
   <div class="px-8 md:px-16">
