@@ -120,7 +120,7 @@
   "泽德花园二期": [{ "name": "汇德", "all": true }],
   "泽德花园": [{ "name": "泽德", "all": true }],
   "泽德路": [
-    { "name": "汇德", "start": 55, "end": 55, "all": false },
+    { "name": "汇德", "start": 49, "end": 55, "all": false, "oddity": 1 },
     { "name": "泽德", "all": true }
   ],
   "富海花园": [{ "name": "明德", "all": true }],
