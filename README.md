@@ -1,62 +1,77 @@
 # 自动化分居委
 
-自动化分居委是一个用 JavaScript 写的简易小工具，目的在于将给定的某街道辖区内的任一地址对应到其所属社区（aka 居委）。
+基于 TypeScript 的地址匹配社区（居委）工具。
 
-## 原理
+![Demo](./demo.gif)
 
-脚本会读取一个.xlsx，按你指定的“地址列”匹配居委并把结果写回表格。
+仓库为 Monorepo，包含：
 
-## 具体怎么操作
+- 核心库（`packages/core`）
+- Excel 批处理 CLI（`packages/cli`）
+- Web 查询页面（`apps/web`，Astro + Svelte）
 
-### 安装依赖
+## 仓库结构
 
-1. 安装 [Node.js v11.9.0+](https://nodejs.org/en/download).
-2. 克隆本仓库并跑 `npm install` 安装依赖:
+```text
+apps/
+	web/              # Web 查询页面（Astro + Svelte）
+packages/
+	core/             # 地址 -> 社区 匹配核心逻辑
+	cli/              # Excel 批处理与辅助脚本
+```
+
+## 环境要求
+
+- Node.js >= 24.12.0
+- Bun >= 1.3.14
+
+## 安装依赖
 
 ```bash
-git clone https://github.com/dev-chenxing/neighborhood-locator.git
-cd neighborhood-locator
-npm install
+bun install
 ```
 
-### 运行脚本
+## 快速开始
 
-在仓库根目录用命令行运行以下命令：
+### 1) Web 查询页面
+
+Demo: [https://tdjw.chenxing.dev](https://tdjw.chenxing.dev)
+
+### 2) Excel 批量分居委（CLI）
+
+在仓库根目录执行：
 
 ```bash
-node ./neighborhood_locator.js "\path\to\你的名单.xlsx" "地址" "所在居委" --log-level ERROR
+bun packages/cli/index.ts <企业名单.xlsx> [选项]
 ```
 
-说明：
+## 作为核心库使用
 
-- 第一个参数：输入文件路径（仅支持.xlsx文件）。
-- 第二个参数：地址列名，如“地址”。
-- 第三个参数：输出列名，如“所在居委”（脚本会把匹配结果填到该列）。
+可直接复用核心匹配函数 `匹配所属社区()`：
 
-### 作为模块使用
+```ts
+import { 匹配所属社区 } from "./packages/core/resolver";
 
-如果你要在别的项目里直接复用解析逻辑，可以直接从包入口导入：
-
-```js
-const { 匹配所属社区 } = require("neighborhood-locator");
-
-const 社区 = 匹配所属社区("xx路129号");
+const 社区 = 匹配所属社区("广州市白云区西槎路31号");
+console.log(社区);
 ```
 
-### 测试脚本
+## 其他命令
 
 ```bash
-bun run test 广州市白云区西槎路31号
-# 输出：鹅掌坦
+# Compile core 包
+bun run build
+
+# 代码检查
+bun run lint
+
+# 代码格式化
+bun run format
 ```
 
-#### Shell Script 全自動 (不推荐)
+## 数据与准确性说明
 
-`分居委` 腳本是針對某特定格式的辦公表格而寫的全自動腳本，只需一行命令即可完成 99%分居委的工作，但需要安裝`Shell`, 如：[Git Bash](https://git-scm.com/downloads)
-
-```bash
-# 单文件处理模式
-./分居委 2024年5月区新开办企业情况清单.xlsx <XX區> <XX街>
-# 目录处理模式
-./分居委 -D 2024年5月区六类企业清单 <XX區> <XX街>
-```
+- 仅支持 `.xlsx` 文件
+- 表头会自动识别（如“所属街道/镇街/注册地址”等）
+- 匹配规则基于街道名、门牌号区间与单双号
+- 数据为人工整理，可能存在遗漏或误差
