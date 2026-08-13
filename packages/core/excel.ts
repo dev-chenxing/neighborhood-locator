@@ -1,6 +1,6 @@
 import path from "node:path";
 import ExcelJS from "exceljs";
-import { 镇街字段, 地址列, 其他表头字段 } from "./config";
+import { 镇街字段, 非镇街字段, 地址列, 其他表头字段 } from "./config";
 
 function assertXlsxPath(filePath: string) {
   if (path.extname(filePath).toLowerCase() !== ".xlsx") {
@@ -41,7 +41,8 @@ function findMatch(text: string, fields: string[]) {
 }
 
 export function detectHeaderRow(worksheet: ExcelJS.Worksheet) {
-  for (let rowNum = 1; rowNum <= Math.min(3, worksheet.rowCount); rowNum++) {
+  const maxRowsToCheck = 4; // 检查前4行
+  for (let rowNum = 1; rowNum <= Math.min(maxRowsToCheck, worksheet.rowCount); rowNum++) {
     const row = worksheet.getRow(rowNum);
     // 获取当前行的所有单元格文本值
     const cellValues = (row.values as ExcelJS.CellValue[]).map((val) =>
@@ -57,7 +58,7 @@ export function detectHeaderRow(worksheet: ExcelJS.Worksheet) {
       if (!cellValue) return; // 跳过空单元格
 
       // 检查是否是镇街字段
-      if (findMatch(cellValue, 镇街字段)) {
+      if (!findMatch(cellValue, 非镇街字段) && findMatch(cellValue, 镇街字段)) {
         if (streetColIndex === -1) {
           streetColIndex = colIndex;
           matchedHeaderCount++;
