@@ -8,4 +8,4 @@ export type 街道号数映射 = {
   }[];
 };
 
-export type LogLevel = "INFO" | "ERROR";
+export type LogLevel = "DEBUG" | "INFO" | "ERROR";

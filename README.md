@@ -45,6 +45,8 @@ Demo: [https://tdjw.chenxing.dev](https://tdjw.chenxing.dev)
 bun packages/cli/index.ts <企业名单.xlsx> [选项]
 ```
 
+日志等级默认为 `INFO`，可使用 `--log-level` 或 `-l` 调整：
+
 ## 作为核心库使用
 
 可直接复用核心匹配函数 `匹配所属社区()`：

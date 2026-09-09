@@ -23,9 +23,9 @@ const args = yargs(hideBin(process.argv))
   })
   .option("log-level", {
     alias: "l",
-    describe: "日志等级，INFO：输出分居委信息，ERROR：仅输出错误信息",
+    describe: "日志等级，DEBUG：输出调试信息，INFO：输出分居委信息，ERROR：仅输出错误信息",
     default: "INFO",
-    choices: ["INFO", "ERROR"],
+    choices: ["DEBUG", "INFO", "ERROR"],
   })
   .option("sheet-index", {
     alias: "s",
@@ -36,18 +36,35 @@ const args = yargs(hideBin(process.argv))
   .help()
   .parseSync();
 
+const LOG_LEVEL_PRIORITY: Record<LogLevel, number> = {
+  DEBUG: 0,
+  INFO: 1,
+  ERROR: 2,
+};
+
+const createLogger = (configuredLevel: LogLevel) => {
+  const shouldLog = (messageLevel: LogLevel) =>
+    LOG_LEVEL_PRIORITY[messageLevel] >= LOG_LEVEL_PRIORITY[configuredLevel];
+
+  return (messageLevel: LogLevel, message: string) => {
+    if (shouldLog(messageLevel)) console.log(message);
+  };
+};
+
+const logLevel = args.logLevel as LogLevel;
+const log = createLogger(logLevel);
+
 const logNeighborhoodResult = (
   address: string,
   neighborhoodName: string | undefined,
-  logLevel: LogLevel,
 ) => {
   if (neighborhoodName) {
-    if (logLevel == "INFO")
-      console.log(
-        styleText("blue", `${neighborhoodName}`) + " " + styleText("green", `${address}`),
-      );
+    log(
+      "INFO",
+      styleText("blue", `${neighborhoodName}`) + " " + styleText("green", `${address}`),
+    );
   } else {
-    console.log(styleText("red", "未知") + " " + styleText("green", `${address}`));
+    log("ERROR", styleText("red", "未知") + " " + styleText("green", `${address}`));
   }
 };
 
@@ -57,7 +74,7 @@ async function main() {
     throw new Error("缺少必填参数：请输入Excel文件路径");
   }
 
-  const { logLevel, sheetIndex, createCopy, deleteUnknown } = args;
+  const { sheetIndex, createCopy, deleteUnknown } = args;
 
   const workbook = await loadWorkbook(excel_file);
 
@@ -81,7 +98,8 @@ async function main() {
     if (sheet === undefined) {
       throw new Error(`工作表索引 ${sheetIndex} 不存在`);
     }
-    console.log(
+    log(
+      "DEBUG",
       "正在处理工作表" +
         styleText("cyan", `${sheetIndex}`) +
         "：" +
@@ -90,7 +108,8 @@ async function main() {
     );
     // 获取表头行和镇街列索引
     const { headerRowNum, streetColIndex, addressColIndex } = detectHeaderRow(sheet);
-    console.log(
+    log(
+      "DEBUG",
       `表头行号：` +
         styleText("cyan", `${headerRowNum}`) +
         `，镇街列索引：` +
@@ -114,7 +133,7 @@ async function main() {
       const address = String(row.getCell(addressColIndex).value).trim();
       const neighborhood = address ? 匹配所属社区(address) : "";
 
-      logNeighborhoodResult(address, neighborhood, logLevel !== "ERROR" ? "INFO" : "ERROR");
+      logNeighborhoodResult(address, neighborhood);
 
       if (neighborhood) totalFinished++;
       totalCount++;
@@ -135,7 +154,8 @@ async function main() {
     }
   }
 
-  console.log(
+  log(
+    "INFO",
     "\n已分居委" +
       styleText("cyan", `${totalFinished}`) +
       "条，共" +

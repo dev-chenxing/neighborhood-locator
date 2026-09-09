@@ -6,6 +6,7 @@ DIR_MODE=0
 FILE=""
 DISTRICT=""
 FILTER_STREET=""
+LOG_LEVEL="INFO"
 args=()
 
 while [[ $# -gt 0 ]]; do
@@ -13,6 +14,15 @@ while [[ $# -gt 0 ]]; do
         -D)
             DIR_MODE=1
             shift
+            ;;
+        -l|--log-level)
+            if [[ $# -lt 2 ]]; then
+                echo "❌ 缺少日志等级参数！"
+                echo "可选值: DEBUG、INFO、ERROR"
+                exit 1
+            fi
+            LOG_LEVEL="$2"
+            shift 2
             ;;
         *)
             args+=("$1")
@@ -23,7 +33,7 @@ done
 
 if [[ ${#args[@]} -ne 3 ]]; then
     echo "❌ 参数缺失！"
-    echo "用法: $0 [-D] <文件或目录> <区> <街道>"
+    echo "用法: $0 [-D] [-l DEBUG|INFO|ERROR] <文件或目录> <区> <街道>"
     exit 1
 fi
 
@@ -33,11 +43,16 @@ FILTER_STREET="${args[2]}"
 
 process_file() {
     local excel_path="$1"
-    # 过滤街道
+    local filename=$(basename "$excel_path")
+    if [[ "$LOG_LEVEL" != "ERROR" ]]; then
+        echo ""
+        echo "📄 正在处理：$filename"
+        echo ""
+    fi
+    # 筛选街道
     local filtered_excel=$(bun --cwd packages/cli filter_street.js "$excel_path" "$DISTRICT" "$FILTER_STREET" -o)
-    echo "✅ 已过滤街道，输出文件: $filtered_excel"
     # 匹配居委写入表格
-    bun --cwd packages/cli index.js "$filtered_excel"
+    bun --cwd packages/cli index.js "$filtered_excel" --log-level "$LOG_LEVEL"
 }
 
 if [[ $DIR_MODE -eq 1 ]]; then
@@ -46,21 +61,32 @@ if [[ $DIR_MODE -eq 1 ]]; then
         exit 1
     fi
 
-    excel_files=("$FILE"/*.xlsx)
-    # 检查是否有匹配的文件
-    if [[ ${#excel_files[@]} -eq 0 || ! -f "${excel_files[0]}" ]]; then
-        echo "❌ 目录 '$FILE' 中没有找到任何 .xlsx 文件！"
+    files=("$FILE"/*)
+    # 检查目录是否为空
+    if [[ ${#files[@]} -eq 0 || ! -e "${files[0]}" ]]; then
+        echo "❌ 目录 '$FILE' 为空！"
         exit 0
     fi
 
-    for excel_file in "${excel_files[@]}"; do
+    for file in "${files[@]}"; do
+        filename=$(basename "$file")
+        if [[ ! -f "$file" || "$filename" != *.xlsx ]]; then
+            echo "⏭️  跳过文件: $filename"
+            continue
+        fi
+
         # 跳过Office临时文件
-        filename=$(basename "$excel_file")
         if [[ "$filename" == '~$'* ]]; then
             echo "⏭️  跳过Office临时文件: $filename"
             continue
         fi
-        process_file "$excel_file"
+
+        # 只处理文件名包含区名称的原始名单，跳过已按街道生成的文件
+        if [[ "$filename" != *"$DISTRICT"* ]]; then
+            echo "⏭️  跳过已筛选镇街文件: $filename"
+            continue
+        fi
+        process_file "$file"
     done
 else
     if [[ ! -f "$FILE" ]]; then
