@@ -122,9 +122,28 @@ async function main() {
       continue; // 未找到表头行或镇街列，跳过当前工作表
     }
 
-    // 在最后一列添加居委列
+    // 在最后一列添加居委列，并复制前一列的样式
     const headerRow = sheet.getRow(headerRowNum);
-    const 居委列 = headerRow.cellCount + 1; // 居委列索引为最后一列的下一个索引
+    const 居委列 = sheet.columnCount + 1; // 居委列索引为最后一列的下一个索引
+    const 样式来源列 = 居委列 - 1;
+    const 样式来源列对象 = sheet.getColumn(样式来源列);
+    const 居委列对象 = sheet.getColumn(居委列);
+
+    // 列宽不属于单元格样式，需要单独复制
+    居委列对象.width = 样式来源列对象.width;
+
+    // 复制完整样式，使用独立副本避免两个单元格共享同一个样式对象
+    for (let rowNum = 1; rowNum <= sheet.rowCount; rowNum++) {
+      const sourceCell = sheet.getRow(rowNum).getCell(样式来源列);
+      const targetCell = sheet.getRow(rowNum).getCell(居委列);
+      targetCell.style = structuredClone(sourceCell.style);
+      targetCell.alignment = {
+        ...targetCell.alignment,
+        horizontal: "center",
+        vertical: "middle",
+      };
+    }
+
     headerRow.getCell(居委列).value = 居委列名;
 
     // 遍历数据行，匹配所属社区，并将结果写入居委列
