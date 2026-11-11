@@ -1,5 +1,5 @@
 import path from "node:path";
-import { detectHeaderRow, loadWorkbook, saveWorkbook } from "../core/excel";
+import { detectHeaderRow, getCellText, loadWorkbook, saveWorkbook } from "../core/excel";
 
 async function main() {
   const excelFile = process.argv[2];
@@ -41,7 +41,7 @@ async function main() {
     // 倒序删除不符合镇街条件的行
     for (let rowNum = sheet.rowCount; rowNum > headerRowNum; rowNum--) {
       const row = sheet.getRow(rowNum);
-      const 镇街列值 = String(row.getCell(streetColIndex).value || "").trim();
+      const 镇街列值 = getCellText(row.getCell(streetColIndex));
       // 不匹配的行删除
       if (!镇街列值.includes(filterStreet)) {
         sheet.spliceRows(rowNum, 1);

@@ -2,7 +2,13 @@ import { styleText } from "node:util";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 import { 居委列名 } from "../core/config";
-import { detectHeaderRow, getWorksheetByIndex, loadWorkbook, saveWorkbook } from "../core/excel";
+import {
+  detectHeaderRow,
+  getCellText,
+  getWorksheetByIndex,
+  loadWorkbook,
+  saveWorkbook,
+} from "../core/excel";
 import { 匹配所属社区 } from "../core/resolver";
 import type { LogLevel } from "../core/types";
 
@@ -149,7 +155,7 @@ async function main() {
     // 遍历数据行，匹配所属社区，并将结果写入居委列
     for (let rowNum = headerRowNum + 1; rowNum <= sheet.rowCount; rowNum++) {
       const row = sheet.getRow(rowNum);
-      const address = String(row.getCell(addressColIndex).value).trim();
+      const address = getCellText(row.getCell(addressColIndex));
       const neighborhood = address ? 匹配所属社区(address) : "";
 
       logNeighborhoodResult(address, neighborhood);

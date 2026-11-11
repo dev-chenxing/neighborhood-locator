@@ -28,6 +28,14 @@ export async function saveWorkbook(workbook: ExcelJS.Workbook, filePath: string)
   await workbook.xlsx.writeFile(filePath);
 }
 
+/**
+ * 获取单元格的显示文本。
+ * 支持富文本、超链接和公式等单元格值。
+ */
+export function getCellText(cell: ExcelJS.Cell): string {
+  return cell.text.trim();
+}
+
 type 表头匹配结果 = {
   字段: string;
   优先级: number;
@@ -64,8 +72,8 @@ export function detectHeaderRow(worksheet: ExcelJS.Worksheet) {
   for (let 行号 = 1; 行号 <= Math.min(最大检查行数, worksheet.rowCount); 行号++) {
     const 当前行 = worksheet.getRow(行号);
     // 获取当前行的所有单元格文本值
-    const 单元格值列表 = (当前行.values as ExcelJS.CellValue[]).map((值) =>
-      值 !== undefined ? String(值).trim() : "",
+    const 单元格值列表 = Array.from({ length: worksheet.columnCount }, (_, 索引) =>
+      getCellText(当前行.getCell(索引 + 1)),
     );
 
     const 镇街候选列表: 表头候选[] = [];
@@ -80,13 +88,13 @@ export function detectHeaderRow(worksheet: ExcelJS.Worksheet) {
       const 非镇街匹配 = 匹配表头(单元格值, 非镇街字段);
       const 镇街匹配 = 匹配表头(单元格值, 镇街字段);
       if (!非镇街匹配 && 镇街匹配) {
-        镇街候选列表.push({ 列索引, ...镇街匹配 });
+        镇街候选列表.push({ 列索引: 列索引 + 1, ...镇街匹配 });
       }
 
       // 检查是否是地址列字段
       const 地址匹配 = 匹配表头(单元格值, 地址列);
       if (地址匹配) {
-        地址候选列表.push({ 列索引, ...地址匹配 });
+        地址候选列表.push({ 列索引: 列索引 + 1, ...地址匹配 });
       }
 
       // 检查是否是其他表头字段
